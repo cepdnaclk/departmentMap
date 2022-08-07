@@ -11,12 +11,12 @@ $('body').append(renderer.domElement);
 //Creating Backgroud
 //Import images to the cube
 let materialArray = [];
-let texture_ft = new THREE.TextureLoader().load('./images/4.png');
-let texture_bk = new THREE.TextureLoader().load('./images/5.png');
-let texture_up = new THREE.TextureLoader().load('./images/2.png');
-let texture_dn = new THREE.TextureLoader().load('./images/6.png');
-let texture_rt = new THREE.TextureLoader().load('./images/3.png');
-let texture_lf = new THREE.TextureLoader().load('./images/1.png');
+let texture_ft = new THREE.TextureLoader().load('./images/background1/4.png');  //There are 4 background sets
+let texture_bk = new THREE.TextureLoader().load('./images/background1/5.png');
+let texture_up = new THREE.TextureLoader().load('./images/background1/2.png');
+let texture_dn = new THREE.TextureLoader().load('./images/background1/6.png');
+let texture_rt = new THREE.TextureLoader().load('./images/background1/3.png');
+let texture_lf = new THREE.TextureLoader().load('./images/background1/1.png');
 
 materialArray.push(new THREE.MeshBasicMaterial({map: texture_ft}));
 materialArray.push(new THREE.MeshBasicMaterial({map: texture_bk}));
@@ -880,7 +880,7 @@ function leftBottom(){
 function changeCorners(){   //Change the shape of the corners of the layouts
     if(circleCorners==1){
         circleCorners = 0;
-        document.getElementById("changeCorners").innerHTML = "Circle Corners";
+        document.getElementById("helpbutton").style.borderRadius = "0vmin";
         document.getElementById("main_information").style.borderRadius = "0vmin";
         document.getElementById("hint").style.borderRadius = "0vmin";
         document.getElementById("more_information").style.borderRadius = "0vmin";
@@ -896,7 +896,7 @@ function changeCorners(){   //Change the shape of the corners of the layouts
         document.getElementById("contactus_button").style.borderRadius = "0vmin";
     }else{
         circleCorners = 1;
-        document.getElementById("changeCorners").innerHTML = "Square Corners";
+        document.getElementById("helpbutton").style.borderRadius = "1.4vmin";
         document.getElementById("main_information").style.borderRadius = "3.5vmin 3.5vmin 0vmin 0vmin";
         document.getElementById("hint").style.borderRadius = "0vmin 0vmin 3.5vmin 3.5vmin";
         document.getElementById("more_information").style.borderRadius = "3.5vmin";
@@ -1093,11 +1093,23 @@ function hideDetails(){         //This function hides the pop up window (contact
     document.getElementById("contactus").style.display = "none";
 }
 
+function showGuide(){         //This function shows the pop up window (information about the appllication)
+    document.getElementById("glass1").style.display = "flex";
+    document.getElementById("guider").style.display = "inline";
+    document.getElementById("help").scrollTo(0, 0);
+}
+
+function hideGuide(){         //This function hides the pop up window (information about the appllication)
+    document.getElementById("glass1").style.display = "none";
+    document.getElementById("guider").style.display = "none";
+}
+
+
 //Redirecting to other pages
 function redirecttoPage(pageID){
     switch(pageID){
         case 0:
-            window.open("index.html","_self");
+            window.open("FloorG.html","_self");
             break;
         case 1:
             window.open("Floor1.html","_self");
