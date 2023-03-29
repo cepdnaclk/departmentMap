@@ -1135,7 +1135,7 @@ function hideGuide(){         //This function hides the pop up window (informati
 function redirecttoPage(pageID){
     switch(pageID){
         case 0:
-            window.open("index.html","_self");
+            window.open("FloorG.html","_self");
             break;
         case 1:
             window.open("Floor1.html","_self");
