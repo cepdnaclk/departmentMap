@@ -1455,9 +1455,13 @@ function roomInfo(buildingID){
 
     if(my_json[buildingID].url.toString()!="#"){
         document.getElementById("url").href = my_json[buildingID].url;
+    }else{
+        document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
     }
     if(my_json[buildingID].contact.link!=""){
         document.getElementById("Personurl").href = my_json[buildingID].contact.link;
+    }else{
+        document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
     }
                           
    }
