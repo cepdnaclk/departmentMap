@@ -1,0 +1,40 @@
+---
+layout: default
+permalink: "/"
+title: "3D interactive Department Map"
+---
+
+<h1 class="text-center pb-2">
+    3D Interactive Department Map
+</h1>
+<hr>
+
+<h4 class="text-center text-secondary pt-2 pb-4">Explore in 3D</h4>
+<div class="d-flex justify-content-between p-3 pt-2">
+    {%- for floor in site.data.floors -%}
+    <a href="{{ floor.map_link | relative_url }}" class="text-decoration-none">
+        <div class="card m-1" style="width: 12rem;">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div style="background-color: green; min-height: 48px;">&nbsp;</div>
+            <div class="card-body">
+                <p class="card-title text-center fs-5 text-success">{{ floor.title }}</p>
+            </div>
+        </div>
+    </a>
+    {%- endfor -%}
+</div>
+
+<hr>
+<h4 class="text-center text-secondary pt-2 pb-4">Explore in Page</h4>
+<div class="d-flex justify-content-between p-3 pt-2">
+    {%- for floor in site.data.floors -%}
+    <a href="{{ floor.text_link | relative_url }}" class="text-decoration-none">
+        <div class="card m-1" style="width: 12rem;">
+            <div style="background-color: blue; min-height: 48px;">&nbsp;</div>
+            <div class="card-body">
+                <p class="card-title text-center fs-5 text-primary">{{ floor.title }}</p>
+            </div>
+        </div>
+    </a>
+    {%- endfor -%}
+</div>
