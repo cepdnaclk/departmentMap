@@ -12,9 +12,11 @@ title: "3D interactive Department Map"
 
 <div class="d-flex flex-wrap justify-content-center p-3 pt-2">
     {%- for floor in site.data.floors -%}
-    <div class="card text-center m-1 border-primary" style="width: 10rem;">
+    <div class="card text-center m-1 border-primary img-hover-zoom-card" style="width: 10rem;">
         <a href="{{ floor.map_link | relative_url }}" class="text-decoration-none">
-            <img src="{{ '/assets/img/map.jpg' | relative_url }}" class="card-img-top" alt="3D View">
+            <div class="img-hover-zoom">
+                <img src="{{ '/assets/img/map.jpg' | relative_url }}" class="card-img-top" alt="3D View">
+            </div>
             <div class="card-body d-flex flex-column">
                 <h6 class="card-title text-primary">
                     {{ floor.title }}
@@ -29,9 +31,11 @@ title: "3D interactive Department Map"
 
 <div class="d-flex flex-wrap justify-content-center p-3 pt-2">
     {%- for floor in site.data.floors -%}
-    <div class="card text-center m-1 border-success" style="width: 10rem;">
+    <div class="card text-center m-1 border-success img-hover-zoom-card" style="width: 10rem;">
         <a href="{{ floor.text_link | relative_url }}" class="text-decoration-none">
-            <img src="{{ '/assets/img/page.jpg' | relative_url }}" class="card-img-top" alt="Page View">
+            <div class="img-hover-zoom">
+                <img src="{{ '/assets/img/page.jpg' | relative_url }}" class="card-img-top" alt="Page View">
+            </div>
             <div class="card-body d-flex flex-column">
                 <h6 class="card-title text-success">
                     {{ floor.title }}
