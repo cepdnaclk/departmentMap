@@ -8,38 +8,36 @@ title: "3D interactive Department Map"
     3D Interactive Department Map
 </h1>
 
-<h4 class="text-center text-secondary pt-4 pb-2">Explore in 3D</h4>
+<h4 class="text-center text-primary pt-4 pb-2">Explore in 3D</h4>
 
 <div class="d-flex flex-wrap justify-content-center p-3 pt-2">
     {%- for floor in site.data.floors -%}
     <div class="card text-center m-1 border-primary" style="width: 10rem;">
-        <!-- <img src="" class="card-img-top p-1" alt=""> -->
-        <div class="m-0" style="background-color: blue; min-height: 48px;">&nbsp;</div>
-        <div class="card-body d-flex flex-column">
-            <a href="{{ floor.map_link | relative_url }}" class="text-decoration-none">
+        <a href="{{ floor.map_link | relative_url }}" class="text-decoration-none">
+            <img src="{{ '/assets/img/map.jpg' | relative_url }}" class="card-img-top" alt="3D View">
+            <div class="card-body d-flex flex-column">
                 <h6 class="card-title text-primary">
                     {{ floor.title }}
                 </h6>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
     {%- endfor -%}
 </div>
 
-<h4 class="text-center text-secondary pt-4 pb-2">Explore in Page</h4>
+<h4 class="text-center text-success pt-4 pb-2">Explore in Page</h4>
 
 <div class="d-flex flex-wrap justify-content-center p-3 pt-2">
     {%- for floor in site.data.floors -%}
     <div class="card text-center m-1 border-success" style="width: 10rem;">
-        <!-- <img src="" class="card-img-top p-1" alt=""> -->
-        <div style="background-color: green; min-height: 48px;">&nbsp;</div>
-        <div class="card-body d-flex flex-column">
-            <a href="{{ floor.text_link | relative_url }}" class="text-decoration-none">
+        <a href="{{ floor.text_link | relative_url }}" class="text-decoration-none">
+            <img src="{{ '/assets/img/page.jpg' | relative_url }}" class="card-img-top" alt="Page View">
+            <div class="card-body d-flex flex-column">
                 <h6 class="card-title text-success">
                     {{ floor.title }}
                 </h6>
-            </a>
-        </div>
+            </div>
+        </a>
     </div>
     {%- endfor -%}
 </div>
