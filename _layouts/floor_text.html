@@ -1,0 +1,157 @@
+---
+layout: default
+---
+
+<div class="bg-secondary p-3 pb-1 rounded">
+  <h1 class="text-white">{{ page.title }}</h1>
+  <nav aria-label="breadcrumb page-breadcrumb">
+    <ol class="breadcrumb page-breadcrumb">
+      <li class="breadcrumb-item"><a href="{% link pages/index.html %}" class="link-light">Home</a></li>
+      <li class="breadcrumb-item text-white">
+        Explore in Page
+      </li>
+      <li class="breadcrumb-item text-white">
+        {{ page.title }}
+      </li>
+    </ol>
+  </nav>
+</div>
+
+{% assign floor_data = site.data.locations[page.floor_tag] %}
+
+<div class="container p-3 pt-4">
+
+  {%- for location in floor_data.locations -%}
+
+  {%- if site.data.exclude_ids contains location.id -%}
+  <!-- Exclude this IDs from web view -->
+  {%- else -%}
+  <hr>
+  <div class="container pb-4">
+    <div class="row pb-0">
+      <div class="col d-flex flex-wrap">
+        <!-- Title -->
+        <h3>
+          {{ location.title }} <span class="ms-2 text-muted fs-6">{{ location.label }}</span>
+        </h3>
+      </div>
+      <div class="col-1">
+        <!-- API -->
+        <a href="{{ location.api_url }}" class="ms-2 text-secondary" target="_blank">
+          <i class="fa fa-database"></i>
+        </a>
+
+        <!-- Edit URL -->
+        <a href="{{ site.edit_url }}" class="ms-2 text-secondary" target="_blank">
+          <i class="fa fa-edit"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Description -->
+    {%- if location.description.size > 0 -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Description</div>
+      <div class="col-sm-10">
+        {{ location.description }}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Capacity -->
+    {%- if location.capacity != "N/A" -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Capacity</div>
+      <div class="col-sm-10">
+        {{ location.capacity }} person(s)
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Webpage -->
+    {%- if location.url != "#" -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Web Page</div>
+      <div class="col-sm-10">
+        <a href="{{ location.url }}" target="_blank">{{ location.url }}</a>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Contact Information -->
+    {%- if location.contact.name != "" -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Contact</div>
+      <div class="col-sm-10">
+        <span class="me-1">
+          {{ location.contact.name }}
+        </span>
+
+        {%- if location.contact.link != "" -%}
+        |<a class="btn btn-link btn-sm ms-1 me-1 text-decoration-none" href="{{ location.contact.link }}"><i
+            class="fa fa-user"></i>
+          Profile</a>
+        {%- endif -%}
+
+        {%- if location.contact.tele != "" -%}
+        |<span class="text-muted ms-1 me-1">
+          {% include email_reveal.html email=location.contact.tele text="<i class='fa fa-phone'></i> Tele" %}
+        </span>
+        {%- endif -%}
+
+        {%- if location.contact.email != "" -%}
+        |<span class="text-muted ms-1 me-1">
+          {% include email_reveal.html email=location.contact.email text="<i class='fa fa-envelope'></i> Email" %}
+        </span>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Features -->
+    {%- if location.features.size > 0 -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Features</div>
+      <div class="col-sm-10">
+        <ul>
+          {%- for feature in location.features -%}
+          <li>{{ feature }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Accessibility -->
+    {%- if location.accessibility.size > 0 -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Accessibility</div>
+      <div class="col-sm-10">
+        {%- for access in location.accessibility -%}
+        <span class="badge bg-success me-2">{{ access }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+    <!-- Tags -->
+    {%- if location.tags.size > 0 -%}
+    <div class="container row pb-2">
+      <div class="col-sm-2">Tags</div>
+      <div class="col-sm-10">
+        {%- for tag in location.tags -%}
+        <span class="badge bg-primary me-2">{{ tag }}</span>
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endif -%}
+
+  </div>
+
+  {%- endif -%}
+  {%- endfor -%}
+
+  <!-- Optional -->
+  {{ content }}
+
+</div>

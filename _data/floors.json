@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Ground Floor",
+        "map_link": "/FloorG.html",
+        "text_link": "page/FloorG.html"
+    },
+    {
+        "title": "1st Floor",
+        "map_link": "/Floor1.html",
+        "text_link": "page/Floor1.html"
+    },
+    {
+        "title": "2nd Floor",
+        "map_link": "/Floor2.html",
+        "text_link": "page/Floor2.html"
+    },
+    {
+        "title": "3rd Floor",
+        "map_link": "/Floor3.html",
+        "text_link": "page/Floor3.html"
+    },
+    {
+        "title": "4th Floor",
+        "map_link": "/Floor4.html",
+        "text_link": "page/Floor4.html"
+    }
+]
