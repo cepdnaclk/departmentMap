@@ -255,7 +255,7 @@ var assets = 0;
 var assetsobjects;
 function ImportAssets(location,xValue,yValue,zValue,xrotatevalue,scale=1){
     if(assets==0){
-        buildingloader.load(location,(gltf) => {
+        buildingloader.load('https://cepdnaclk.github.io/e18-co227-Interactive-Department-Map-GroupA/main/assets/' + location,(gltf) => {
             assetsobjects = gltf.scene;
             assetsobjects.scale.set(scale,scale,scale);                                            //Set the scale of the object
             scene.add(assetsobjects);                                                  //Add to the scene
