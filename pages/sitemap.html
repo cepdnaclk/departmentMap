@@ -22,10 +22,27 @@ permalink: /sitemap/
 
     <div class="container pb-3">
         <ul>
-            {% for page in pages_list %}
-            <li><a href="{{ page.permalink | relative_url }}">{{ page.title }}</a></li>
-            {% endfor %}
+            <li><a href="{{ '/' | relative_url }}">3D interactive Department Map</a></li>
         </ul>
-    </div>
 
+        {%- assign viewIn3D = pages_list | where: "parent", "ViewIn3D" -%}
+        <div class="container pb-3">
+            <h4>View in 3D</h4>
+            <ul>
+                {% for page in viewIn3D %}
+                <li><a href="{{ page.permalink | relative_url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        {%- assign viewInText = pages_list | where: "parent", "ViewInText" -%}
+        <div class="container pb-3">
+            <h4>View in Text</h4>
+            <ul>
+                {% for page in viewInText %}
+                <li><a href="{{ page.permalink | relative_url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
