@@ -1193,7 +1193,7 @@ function hideGuide(){         //This function hides the pop up window (informati
 
 
 //Redirecting to other pages
-function redirecttoPage(pageID){
+function redirectToPage(pageID){
     switch(pageID){
         case 0:
             window.open("FloorG.html","_self");
@@ -1214,7 +1214,7 @@ function redirecttoPage(pageID){
 }
 
 //Redirecting to developers' department web site pages
-function redirecttoAccount(pageID){
+function redirectToAccount(pageID){
     switch(pageID){
         case 1:
             window.open("https://people.ce.pdn.ac.lk/students/e15/140/");
