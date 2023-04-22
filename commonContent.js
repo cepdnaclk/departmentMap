@@ -990,54 +990,57 @@ async function showPath(buildingID){
 
 
 async function showPath_byLabel(buildingLabel){
-    console.log(buildingLabel);
-
-    if(itemSelected){   //If item has been selected
-
-        //Set colours of the items to default  
-        const navItems = document.getElementsByClassName("navigate_item");
-        for(var i=0;i<navItems.length;i++){
-            navItems[i].style.color = "#616160"   
-        }
-
-         // Dissapear the showed path
-        for(var i=0;i<NavigatingMaterialArray.length;i++){         
-            NavigatingMaterialArray[i].opacity = 0;
-        }
-        if(ViewMode=="sky" || ViewMode=="drone"){
-            // Set opacity of all the panels to 0
-            for(var i=0;i<idNUM;i++){                                           
-                transparentMaterialForPanelsArray[i].opacity = 0;
-            }
-        }
-        itemSelected = false;// !itemSelected;
-    }
-    
-    if(ViewMode!="sky"){
-        initLabel = buildingLabel;
-        await switchtoSKY();
-    }
-
+    console.log(buildingLabel, itemSelected, lastID);
     const selectedLocation = buildingID_labeledList.filter(loc => { return loc[0] == buildingLabel})[0] ;
 
-    if(selectedLocation && lastID != selectedLocation[1]){
+    // TODO: Fix dubble selection bug 
+
+    if (selectedLocation){
+        if(itemSelected){   //If item has been selected
+
+            //Set colours of the items to default  
+            const navItems = document.getElementsByClassName("navigate_item");
+            for(var i=0;i<navItems.length;i++){
+                navItems[i].style.color = "#616160"   
+            }
+
+            // Dissapear the showed path
+            for(var i=0;i<NavigatingMaterialArray.length;i++){         
+                NavigatingMaterialArray[i].opacity = 0;
+            }
+            if(ViewMode=="sky" || ViewMode=="drone"){
+                // Set opacity of all the panels to 0
+                for(var i=0;i<idNUM;i++){                                           
+                    transparentMaterialForPanelsArray[i].opacity = 0;
+                }
+            }
+            itemSelected = false;// !itemSelected;
+        }
         
-        // Highlight the selected item    
-        document.getElementById("navigatingItem_" + selectedLocation[0]).style.color = "#000000";
-
-        // Show thw path (using bars)
-        for(var i=0;i<selectedLocation[2].length;i++){
-            NavigatingMaterialArray[selectedLocation[2][i]].opacity = 1;   
+        if(ViewMode!="sky"){
+            initLabel = buildingLabel;
+            await switchtoSKY();
         }
 
-        // Set opacity of all the panels
-        for(var i=0;i<idNUM;i++){                                           
-            transparentMaterialForPanelsArray[i].opacity = i==selectedLocation[1] ? 0.4 : 0;
-        }
-        roomInfo(selectedLocation[1]);
+        if(lastID != selectedLocation[1] && itemSelected==false){
+            
+            // Highlight the selected item    
+            document.getElementById("navigatingItem_" + selectedLocation[0]).style.color = "#000000";
 
-        lastID = selectedLocation[1]; 
-        itemSelected = true;
+            // Show thw path (using bars)
+            for(var i=0;i<selectedLocation[2].length;i++){
+                NavigatingMaterialArray[selectedLocation[2][i]].opacity = 1;   
+            }
+
+            // Set opacity of all the panels
+            for(var i=0;i<idNUM;i++){                                           
+                transparentMaterialForPanelsArray[i].opacity = i==selectedLocation[1] ? 0.4 : 0;
+            }
+            roomInfo(selectedLocation[1]);
+
+            lastID = selectedLocation[1]; 
+            itemSelected = true;
+        }
     }
 }
 
@@ -1464,124 +1467,63 @@ var animate = function(){
 
 //Update information panel
 function roomInfo(buildingID){
-    document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
-                               //Update the default information about the department on the top right labels
-    
-    var list1Content = "";
-    var list2Content = "";
+    if (my_json[buildingID]){
+        document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
+                                //Update the default information about the department on the top right labels
+        
+        var list1Content = "";
+        var list2Content = "";
 
-    
-    for(var i=0;i<my_json[buildingID].description.length;i++){
-        list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
-    }
-    if(my_json[buildingID].tags.length!=0){
-        list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
-        for(var i=0;i<my_json[buildingID].tags.length;i++){
-            list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
+        
+        for(var i=0;i<my_json[buildingID].description.length;i++){
+            list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
         }
-        list1Content += '</div>';
-    }
-    if(my_json[buildingID].contact.name!=""){
-        list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
-    }
-    if(my_json[buildingID].contact.email!=""){
-        list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
-    }
-    document.getElementById("list").innerHTML = list1Content;
-
-
-    if(my_json[buildingID].title!=""){
-        list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
-    }
-    for(var i=0;i<my_json[buildingID].features.length;i++){
-        list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
-    }
-    if(my_json[buildingID].accessibility.length!=0){
-        list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
-        for(var i=0;i<my_json[buildingID].accessibility.length;i++){
-            list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
+        if(my_json[buildingID].tags.length!=0){
+            list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
+            for(var i=0;i<my_json[buildingID].tags.length;i++){
+                list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
+            }
+            list1Content += '</div>';
         }
-        list2Content += '</div></li>';
-    }
-    if(my_json[buildingID].capacity.toString()!="N/A"){
-        list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
-    }
-    if(my_json[buildingID].contact.tele!=""){
-        list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
-    }
-    document.getElementById("list2").innerHTML = list2Content;
-
-    if(my_json[buildingID].url.toString()!="#"){
-        document.getElementById("url").href = my_json[buildingID].url;
-    }else{
-        document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
-    }
-    if(my_json[buildingID].contact.link!=""){
-        document.getElementById("Personurl").href = my_json[buildingID].contact.link;
-    }else{
-        document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
-    }
-                          
-   }
-//Update information panel
-function roomInfo(buildingID){
-
-    document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
-                               //Update the default information about the department on the top right labels
-    
-    var list1Content = "";
-    var list2Content = "";
-
-    
-    for(var i=0;i<my_json[buildingID].description.length;i++){
-        list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
-    }
-    if(my_json[buildingID].tags.length!=0){
-        list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
-        for(var i=0;i<my_json[buildingID].tags.length;i++){
-            list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
+        if(my_json[buildingID].contact.name!=""){
+            list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
         }
-        list1Content += '</div>';
-    }
-    if(my_json[buildingID].contact.name!=""){
-        list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
-    }
-    if(my_json[buildingID].contact.email!=""){
-        list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
-    }
-    document.getElementById("list").innerHTML = list1Content;
-
-
-    if(my_json[buildingID].title!=""){
-        list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
-    }
-    for(var i=0;i<my_json[buildingID].features.length;i++){
-        list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
-    }
-    if(my_json[buildingID].accessibility.length!=0){
-        list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
-        for(var i=0;i<my_json[buildingID].accessibility.length;i++){
-            list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
+        if(my_json[buildingID].contact.email!=""){
+            list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
         }
-        list2Content += '</div></li>';
-    }
-    if(my_json[buildingID].capacity.toString()!="N/A"){
-        list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
-    }
-    if(my_json[buildingID].contact.tele!=""){
-        list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
-    }
-    document.getElementById("list2").innerHTML = list2Content;
+        document.getElementById("list").innerHTML = list1Content;
 
-    if(my_json[buildingID].url.toString()!="#"){
-        document.getElementById("url").href = my_json[buildingID].url;
-    }else{
-        document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
-    }
-    if(my_json[buildingID].contact.link!=""){
-        document.getElementById("Personurl").href = my_json[buildingID].contact.link;
-    }else{
-        document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
-    }
-                          
-   }
+
+        if(my_json[buildingID].title!=""){
+            list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
+        }
+        for(var i=0;i<my_json[buildingID].features.length;i++){
+            list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
+        }
+        if(my_json[buildingID].accessibility.length!=0){
+            list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
+            for(var i=0;i<my_json[buildingID].accessibility.length;i++){
+                list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
+            }
+            list2Content += '</div></li>';
+        }
+        if(my_json[buildingID].capacity.toString()!="N/A"){
+            list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
+        }
+        if(my_json[buildingID].contact.tele!=""){
+            list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
+        }
+        document.getElementById("list2").innerHTML = list2Content;
+
+        if(my_json[buildingID].url.toString()!="#"){
+            document.getElementById("url").href = my_json[buildingID].url;
+        }else{
+            document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
+        }
+        if(my_json[buildingID].contact.link!=""){
+            document.getElementById("Personurl").href = my_json[buildingID].contact.link;
+        }else{
+            document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
+        }
+    }                  
+}

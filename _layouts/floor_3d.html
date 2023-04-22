@@ -18,7 +18,204 @@
 </head>
 
 <body>
+    {% assign floor_data = site.data.locations[page.floor_tag] %}
+
+    <div id="glass" class="glass" onmouseover="nowin()" onmouseleave="nowout()"></div>
+    <img class="logo" src="images/logo.png">
+    <div class="controlLayoutColoured"></div>
+    <!--This is an invisible layout which used to sense mouse activities on the label-->
+    <div id="information" class="information_class">
+        <div id="main_information" class="main_information_class"> <!--Top right main information label-->
+            <div id="label" class="label1_class">Room Name</div>
+            <ul id="list" class="list_class" style="list-style-image: url(images/bullet2.png); font-size: 2.15vmin;">
+                <!--Top right main information list-->
+                <li></li>
+            </ul>
+        </div>
+        <div id="hint" class="hint_class">Click on the blue panel for more details</div>
+        <div id="more_information" class="more_information_class"> <!--Top right more information label-->
+            <p2 id="label2" class="label2_class">More information here</p2>
+            <ul id="list2" class="list2_class" style="list-style-image: url(images/bullet2.png);">
+                <!--Top right more information list-->
+                <li></li>
+            </ul>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div id="latterPanel" class="latterPanelClass">
+        <div id="link" class="link_class">
+            <div id="linkHead" class="linkHead_class">Link</div>
+            <div class="url_class">
+                <a href="http://www.ce.pdn.ac.lk/" id="url" target="_blank" style="width: 50%;">Info</a>
+                <a href="http://www.ce.pdn.ac.lk/" id="Personurl" target="_blank" style="width: 50%;">Person Info</a>
+            </div>
+        </div>
+        <div id="navigator" class="navigate_class"> <!--Top right main information label-->
+            <div id="searchBar" class="searchBar">
+                <input id="searchQueryInput" class="searchQueryInput_class" type="text" name="searchQueryInput"
+                    placeholder="Search" value="" />
+                <button id="searchQuerydelete" class="searchQuerydelete_class" type="submit" name="searchQuerydelete"
+                    onclick="deleteInput()">
+                    <svg width="3vmin" height="3vmin" viewBox="0 0 24 24">
+                        <path fill="#1A5276"
+                            d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+                <button id="searchQuerySubmit" class="searchQuerySubmit_class" type="submit" name="searchQuerySubmit"
+                    onclick="findData()">
+                    <svg style="width:3.4vmin;height:3.4vmin" viewBox="0 0 24 24">
+                        <path fill="#666666"
+                            d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                    </svg>
+                </button>
+            </div>
+            <div id="roomListContainer" class="roomListContainer_class">
+                <div id="roomList" class="roomList_class">
+
+                    {%- for location in floor_data.locations -%}
+                    {%- if location.id != "FLOOR" -%}
+                    <div id="navigatingItem_{{ location.label }}" class="items navigate_item"
+                        onclick="showPath_byLabel('{{ location.label }}')">
+                        {{ location.title }}
+                    </div>
+                    {%- endif -%}
+                    {%- endfor -%}
+                </div>
+            </div>
+        </div>
+        <div id="label3" class="label3_class">Navigator</div>
+    </div>
+
     {{ content }}
+
+    <div id="guider" class="guider_class">
+        <div id="g_header" class="g_header_class">
+            <div style="padding-left: 1vmin; padding-top: 1.5vmin; padding-bottom: 1.5vmin;"><strong>Hey there!! Welcome
+                    to
+                    the Department of Computer Engineering!</strong></div>
+            <div id="Guide_close" class="Guide_close_class" name="Guide_close" color="#28B463" onclick="hideGuide()">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="#ffffff"
+                        d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                        fill="currentColor" />
+                </svg>
+            </div>
+        </div>
+        <div id="help" class="help_class">
+            <div class="g_1">
+                <div style="font-size: 2.7vmin; padding-bottom: 3vmin; "><strong>Let's get started !!</strong></div>
+                <div>At the very beginning, now you're at the entrance of the ground floor in walking mode.<br>
+                    You can see a red dot in the centre of the screen. It will assist you to find the exact
+                    direction you're moving. Use it as a walking directory.<br><br>
+                    You can see the information panel on your right side. It has Main 3 parts namely;</div>
+                <div style="display: flex;">
+                    <ul class="g_list">
+                        <li>Main info panel</li>
+                        <li>Navigation panel</li>
+                        <li>Dashboard</li>
+                    </ul>
+                    <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;"
+                        src="images/walking_view.png">
+                    <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;" src="images/drone_view.png">
+                    <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;" src="images/bird_view.png">
+                </div>
+                <div>Let’s see how it changes with respect to the different 3 modes; walk, drone & bird.</div><br>
+            </div>
+            <div class="g_2">
+                <div><strong>Walk mode</strong></div>
+                <ul class="g_list">
+                    <li>This is the default view mode and if you want to switch to walk mode use walk button at bottom
+                        right
+                        or press W key in keyboard</li>
+                    <li>Use Arrow keys to move →right, ←left, ↑ front and ↓back</li>
+                    <li>Use the keys A to turn up, S to turn down.</li>
+                    <li>You can enter rooms only through the doors, not through walls and you will see
+                        the information panel always display the information about the room you’re
+                        currently staying.</li>
+                    <li>You can hover the mouse on to a door to see information about the rooms that are next to that
+                        doors
+                    </li>
+                </ul>
+            </div>
+            <div class="g_3">
+                <div><strong>Drone mode and Bird mode</strong></div>
+                <ul class="g_list">
+                    <li>Click on the Drone/Bird button on the bottom right corner or simply press key D/B</li>
+                    <li>Move the scene like in the walk mode (use arrow keys, S and A keys )</li>
+                    <li>Now to see information about a particular room you have to hover the mouse on
+                        to the relevant panels over rooms</li>
+                </ul>
+            </div>
+            <div class="g_4">
+                <div><strong>Want to get more information about your room?</strong></div>
+                <ul class="g_list">
+                    <li>Click on the wall or a door or a panel and the information panel will be locked and will be
+                        expanded
+                        once you hover on to the information panel.</li>
+                    <li>If you want to unlock the information panel simply click on the door or wall or panel again.
+                    </li>
+                </ul>
+            </div>
+            <div class="g_5">
+                <div><strong>Navigating panel</strong></div><br>
+                <div>Are you looking for a specified place or a person?</div>
+                <ul class="g_list">
+                    <li>Simply type what you’re looking for and the list will be sorted and give results according to
+                        your
+                        requirement.</li>
+                    <li>Or just Select a room in the given list then the path will be shown to there from the entrance
+                    </li>
+                    <li>Attention! your view will be switched to the bird view now!</li>
+                    <li>To hide the selected path click on the room name in the navigation panel again</li>
+                </ul>
+                <div><strong>Every room has a unique ID. If you know them you can directly get the path to them by
+                        simply
+                        typing</div>
+                <div>&lt;URL>&lt;#RoomID></div><br>
+                <div>Want to get more information about a lecturer?</strong></div><br>
+                <div>Use the Search bar to find the lecturer’s room he/she owned. Get more details about
+                    them by clicking on the link button which is at the very bottom of the info panel.</div>
+                <div>Note: You will be directed to their profile page of them.</div><br>
+            </div>
+            <div class="g_6">
+                <div><strong>Are you using a mobile device?</strong></div>
+                <div style="display: flex">
+                    <ul class="g_list">
+                        <li>Click on the dashboard Button controller icon to enable the button
+                            controller for the mobile screen</li>
+                        <li>Note: We do not recommend using mobile devices for now as it is not optimized
+                            yet to get the full functionality of the system.</li>
+                    </ul>
+                    <img style="height: 5vmin; padding-top: 4vmin; padding-left: 2vmin;"
+                        src="images/button_controllers.png">
+                    <img style="height: 15vmin; padding-left: 2vmin;" src="images/buttons.png">
+                </div>
+            </div>
+            <div class="g_7">
+                <div><strong>Contact Us</strong></div><br>
+                <div style="display: flex">
+                    <div style="padding-top: 1vmin;">You can Contact developers by clicking this icon</div><br>
+                    <img style="height: 5vmin; padding-left: 2vmin;" src="images/contact_us.png">
+                </div>
+            </div>
+            <div class="g_8">
+                <div><strong>Need to explore the department in a more realistic manner?</strong></div>
+                <div style="display: flex">
+                    <ul class="g_list">
+                        <li>Enable assets by clicking on</li>
+                    </ul>
+                    <img style="height: 5vmin; padding-top: 1vmin; padding-left: 2vmin;" src="images/assets.png">
+                </div>
+            </div>
+            <div class="g_9">
+                <div>Buttons G, 1,2,3,4 indicates the floors of the dept building . You can Easily Switch
+                    between those floors by using those buttons</div>
+                <img style="height: 5vmin; padding-left: 20%;" src="images/other_floors.png">
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
