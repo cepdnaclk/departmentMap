@@ -838,9 +838,9 @@ async function switchtoSKY(){
     }
     ViewMode = "sky";
     transition = 0;
-    if(initNo!=-1){         //This will show the path if there is a hash segment in the URL
-        showPath(initNo);
-        initNo = -1;
+    if(initLabel){         //This will show the path if there is a hash segment in the URL
+        showPath_byLabel(initLabel);
+        initLabel = null;
     }
 }
 
@@ -982,14 +982,67 @@ async function showPath(buildingID){
         lastID = buildingIDList[buildingID][1];        //Set the LastID
         itemSelected = !itemSelected;
     }else{
-        initNo = buildingID;
+        initLabel = buildingID;
         switchtoSKY();
     }
     // itemSelected = !itemSelected;   //Change the flag
 }
 
+
+async function showPath_byLabel(buildingLabel){
+    console.log(buildingLabel);
+
+    if(itemSelected){   //If item has been selected
+
+        //Set colours of the items to default  
+        const navItems = document.getElementsByClassName("navigate_item");
+        for(var i=0;i<navItems.length;i++){
+            navItems[i].style.color = "#616160"   
+        }
+
+         // Dissapear the showed path
+        for(var i=0;i<NavigatingMaterialArray.length;i++){         
+            NavigatingMaterialArray[i].opacity = 0;
+        }
+        if(ViewMode=="sky" || ViewMode=="drone"){
+            // Set opacity of all the panels to 0
+            for(var i=0;i<idNUM;i++){                                           
+                transparentMaterialForPanelsArray[i].opacity = 0;
+            }
+        }
+        itemSelected = false;// !itemSelected;
+    }
+    
+    if(ViewMode!="sky"){
+        initLabel = buildingLabel;
+        await switchtoSKY();
+    }
+
+    const selectedLocation = buildingID_labeledList.filter(loc => { return loc[0] == buildingLabel})[0] ;
+
+    if(selectedLocation && lastID != selectedLocation[1]){
+        
+        // Highlight the selected item    
+        document.getElementById("navigatingItem_" + selectedLocation[0]).style.color = "#000000";
+
+        // Show thw path (using bars)
+        for(var i=0;i<selectedLocation[2].length;i++){
+            NavigatingMaterialArray[selectedLocation[2][i]].opacity = 1;   
+        }
+
+        // Set opacity of all the panels
+        for(var i=0;i<idNUM;i++){                                           
+            transparentMaterialForPanelsArray[i].opacity = i==selectedLocation[1] ? 0.4 : 0;
+        }
+        roomInfo(selectedLocation[1]);
+
+        lastID = selectedLocation[1]; 
+        itemSelected = true;
+    }
+}
+
 function findData(){    //This function gives the search results of navigating panel
-    if(itemSelected){showPath(5);}              //pickout the paths
+    if(itemSelected){showPath(5);}              //pickout the paths TODO: Update
     var newBuildingIDList = [];
     var currentWord = document.getElementById("searchQueryInput").value.toLowerCase();
     for(var i=0;i<currentWord.length;i++){      //Here all the substrings in gvien word will be searched (exx:-  for 'abc' -> abc, ab, bc, a, b ,c)
@@ -1097,8 +1150,13 @@ function findData(){    //This function gives the search results of navigating p
         buildingIDList[i][3] = "<not style='color:#CBAAAA'>not found</not>";    
     }
     buildingIDList = newBuildingIDList.concat(buildingIDList);
-    for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
-        document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0] + "<div class='hel'>"+buildingIDList[i][3]+"</div>";
+
+    //Update the navigating Item list according to the new buildingID list
+    for(var i=0;i<navigatingItemList.length;i++){       
+        const resData = buildingIDList.filter((item) => {return item[4] == navigatingItemList[i].split("_")[1] })[0];
+        if (resData){
+            document.getElementById(navigatingItemList[i]).innerHTML = resData[0] + "<div class='hel'>"+resData[3]+"</div>";
+        }
     }
 }
 
@@ -1267,21 +1325,21 @@ function buttonControls(buttonID){
     }
 }
 
-var initNo = -1;
+var initLabel = null;
 
 async function checkURL(){  //If there is a hash segment in the URL, this functon will switch camera to bird mode and show the particular room 
-    urlHash = location.hash.substring(1);   //Take the hash segment
+    urlHash = location.hash.substring(1).trim();   //Take the hash segment
     if(urlHash!=""){                        //Checking whether it is empty
-        for(var i=0;i<buildingIDList.length;i++){   //Match with room id s
-            if(my_json[buildingIDList[i][1]].id==urlHash){      //If there is a matching id,
-                switchtoSKY();      //Switch to bird mode
-                initNo = i;         //Flag to switchtoSKY function that path to the room should be shown
-                return 0;           //Stop looping
-            }
+        console.log("URL Hash detected", urlHash);
+        const res = await buildingIDList.filter((item) => { return item[4] == urlHash });
+   
+    
+        if(res.length > 0){
+            initLabel = res[0][4]
+            switchtoSKY();
         }
     }
 }
-
 
 //Front cube
 var frontCameraBall = new THREE.Mesh(
@@ -1406,6 +1464,68 @@ var animate = function(){
 
 //Update information panel
 function roomInfo(buildingID){
+    document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
+                               //Update the default information about the department on the top right labels
+    
+    var list1Content = "";
+    var list2Content = "";
+
+    
+    for(var i=0;i<my_json[buildingID].description.length;i++){
+        list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
+    }
+    if(my_json[buildingID].tags.length!=0){
+        list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
+        for(var i=0;i<my_json[buildingID].tags.length;i++){
+            list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
+        }
+        list1Content += '</div>';
+    }
+    if(my_json[buildingID].contact.name!=""){
+        list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
+    }
+    if(my_json[buildingID].contact.email!=""){
+        list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
+    }
+    document.getElementById("list").innerHTML = list1Content;
+
+
+    if(my_json[buildingID].title!=""){
+        list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
+    }
+    for(var i=0;i<my_json[buildingID].features.length;i++){
+        list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
+    }
+    if(my_json[buildingID].accessibility.length!=0){
+        list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
+        for(var i=0;i<my_json[buildingID].accessibility.length;i++){
+            list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
+        }
+        list2Content += '</div></li>';
+    }
+    if(my_json[buildingID].capacity.toString()!="N/A"){
+        list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
+    }
+    if(my_json[buildingID].contact.tele!=""){
+        list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
+    }
+    document.getElementById("list2").innerHTML = list2Content;
+
+    if(my_json[buildingID].url.toString()!="#"){
+        document.getElementById("url").href = my_json[buildingID].url;
+    }else{
+        document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
+    }
+    if(my_json[buildingID].contact.link!=""){
+        document.getElementById("Personurl").href = my_json[buildingID].contact.link;
+    }else{
+        document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
+    }
+                          
+   }
+//Update information panel
+function roomInfo(buildingID){
+
     document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
                                //Update the default information about the department on the top right labels
     

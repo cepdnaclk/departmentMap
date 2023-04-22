@@ -1,10 +1,13 @@
 ---
-layout: floor
+layout: floor_3d
 permalink: "/FloorG.html"
 title: "Ground Floor"
 parent: "ViewIn3D"
 index: 0
+floor_tag: "G"
 ---
+
+{% assign floor_data = site.data.locations[page.floor_tag] %}
 
 <div id="glass" class="glass" onmouseover="nowin()" onmouseleave="nowout()"></div>
 <img class="logo" src="images/logo.png">
@@ -15,9 +18,7 @@ index: 0
         <div id="label" class="label1_class">Room Name</div>
         <ul id="list" class="list_class" style="list-style-image: url(images/bullet2.png); font-size: 2.15vmin;">
             <!--Top right main information list-->
-            <li>list item 1</li>
-            <li>list item 2</li>
-            <li>list item 3</li>
+            <li></li>
         </ul>
     </div>
     <div id="hint" class="hint_class">Click on the blue panel for more details</div>
@@ -25,9 +26,7 @@ index: 0
         <p2 id="label2" class="label2_class">More information here</p2>
         <ul id="list2" class="list2_class" style="list-style-image: url(images/bullet2.png);">
             <!--Top right more information list-->
-            <li>list item 1</li>
-            <li>list item 2</li>
-            <li>list item 3</li>
+            <li></li>
         </ul>
         <div class="line"></div>
     </div>
@@ -63,22 +62,15 @@ index: 0
         </div>
         <div id="roomListContainer" class="roomListContainer_class">
             <div id="roomList" class="roomList_class">
-                <div id="navigatingItem1" class="items" onclick="showPath(0)"></div>
-                <div id="navigatingItem2" class="items" onclick="showPath(1)"></div>
-                <div id="navigatingItem3" class="items" onclick="showPath(2)"></div>
-                <div id="navigatingItem4" class="items" onclick="showPath(3)"></div>
-                <div id="navigatingItem5" class="items" onclick="showPath(4)"></div>
-                <div id="navigatingItem6" class="items" onclick="showPath(5)"></div>
-                <div id="navigatingItem7" class="items" onclick="showPath(6)"></div>
-                <div id="navigatingItem8" class="items" onclick="showPath(7)"></div>
-                <div id="navigatingItem9" class="items" onclick="showPath(8)"></div>
-                <div id="navigatingItem10" class="items" onclick="showPath(9)"></div>
-                <div id="navigatingItem11" class="items" onclick="showPath(10)"></div>
-                <div id="navigatingItem12" class="items" onclick="showPath(11)"></div>
-                <div id="navigatingItem13" class="items" onclick="showPath(12)"></div>
-                <div id="navigatingItem14" class="items" onclick="showPath(13)"></div>
-                <div id="navigatingItem15" class="items" onclick="showPath(14)"></div>
-                <div id="navigatingItem16" class="items" onclick="showPath(15)"></div>
+
+                {%- for location in floor_data.locations -%}
+                {%- if location.id != "FLOOR" -%}
+                <div id="navigatingItem_{{ location.label }}" class="items navigate_item"
+                    onclick="showPath_byLabel('{{ location.label }}')">
+                    {{ location.title }}
+                </div>
+                {%- endif -%}
+                {%- endfor -%}
             </div>
         </div>
     </div>
@@ -227,17 +219,38 @@ index: 0
 <script type="text/javascript">
     //Database
     //This database is used to load the information about the buildings
-    var my_json = {};
-    var numberofRooms = 16;
+    var my_json = {}; //{{ floor_data.locations | json | replace: "=>", ":" }};
+
+    var numberofRooms = {{ floor_data.locations | size }};
+
     //List of navigating items in the navigating panel
     let navigatingItemList = [];
     //Navigating bars, ids and the names of the rooms
     var buildingIDList = [["", 1, [1, 2, 3, 4]], ["", 2, [1, 2, 3, 4, 5]], ["", 3, [1, 2, 3, 6, 8, 9]], ["", 4, [1, 2, 3, 6, 8, 10]], ["", 5, [1, 2, 3, 6, 8, 10, 12, 13]], ["", 6, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 17]], ["", 7, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 18]], ["", 8, [1, 2, 3, 6, 8, 10, 12, 14]], ["", 9, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23]], ["", 10, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 22]], ["", 11, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 21]], ["", 12, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23, 24]], ["", 18, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16]], ["", 19, [1, 2, 3, 6, 8, 10, 11]], ["", 20, [1, 2, 3, 6, 7]], ["", 21, [1]]];
 
+    var buildingID_labeledList = [
+        ["CE-G-01", 1, [1, 2, 3, 4]],
+        ["CE-G-02", 2, [1, 2, 3, 4, 5]],
+        ["CE-G-03", 3, [1, 2, 3, 6, 8, 9]],
+        ["CE-G-04", 4, [1, 2, 3, 6, 8, 10]],
+        ["CE-G-05", 5, [1, 2, 3, 6, 8, 10, 12, 13]],
+        ["CE-G-06", 6, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 17]],
+        ["CE-G-07", 7, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 18]],
+        ["CE-G-08", 8, [1, 2, 3, 6, 8, 10, 12, 14]],
+        ["CE-G-09", 9, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23]],
+        ["CE-G-10G", 10, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 22]],
+        ["CE-G-10L", 11, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 21]],
+        ["CE-G-11", 12, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23, 24]],
+        ["CE-G-CR01", 18, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16]],
+        ["CE-G-LIFT", 19, [1, 2, 3, 6, 8, 10, 11]],
+        ["CE-G-OP", 20, [1, 2, 3, 6, 7]],
+        ["CE-G-18", 21, [1]],
+        ["CE-G-OUTSIDE", 18, [1]],
+    ];
+
     loadBuildings();
 
     function loadBuildings() {
-
         var xhr = new XMLHttpRequest();		//create XHR object
         xhr.open('GET', 'https://api.ce.pdn.ac.lk/locations/v1/G/index.json', true);
 
@@ -248,24 +261,26 @@ index: 0
                 var my_json2 = my_json.slice(13,);
                 my_json1.push(my_json[10], my_json[10], my_json[11], my_json[11]);
                 my_json = my_json1.concat(my_json2);
-                //console.log(my_json);		
+
                 roomInfo(defaultID);       			//Set initial information should be appeared in the panels
                 // var blenderBuilding = importObject('./floors/FloorG.gltf',-5,0,-80,0,3.28084);  
+
+                // TODO: Update this 
                 var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/FloorG.gltf', -5, 0, -80, 0, 3.28084);
 
                 animate();
-                checkURL();
 
                 for (var i = 0, j = 0; i < 16; i++, j++) {
-                    navigatingItemList[i] = "navigatingItem" + (i + 1).toString();
+                    navigatingItemList[i] = "navigatingItem_" + my_json[j + 1].label;
                     buildingIDList[i][0] = my_json[j + 1].title;
-                    if (j == 11) {
-                        j = 16;
-                    }
+                    buildingIDList[i][4] = my_json[j + 1].label;
                 }
+
+                checkURL();
+
                 //Setting the initial names of the navigating panel list items
                 for (var i = 0; i < numberofRooms; i++) {
-                    document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];
+                    // document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];
                 }
 
             } else {
