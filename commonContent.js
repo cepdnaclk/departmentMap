@@ -978,7 +978,7 @@ async function showPath(buildingID){
             transparentMaterialForPanelsArray[i].opacity = 0;
         }
         transparentMaterialForPanelsArray[buildingIDList[buildingID][1]].opacity = 0.4;
-        roomInfo(buildingIDList[buildingID][1]);
+        roomInfo_byLabel(buildingIDList[buildingID][1]);
         lastID = buildingIDList[buildingID][1];        //Set the LastID
         itemSelected = !itemSelected;
     }else{
@@ -990,8 +990,7 @@ async function showPath(buildingID){
 
 
 async function showPath_byLabel(buildingLabel){
-    console.log(buildingLabel, itemSelected, lastID);
-    const selectedLocation = buildingID_labeledList.filter(loc => { return loc[0] == buildingLabel})[0] ;
+    const selectedLocation = buildingID_data[buildingLabel];
 
     // TODO: Fix dubble selection bug 
 
@@ -1022,23 +1021,23 @@ async function showPath_byLabel(buildingLabel){
             await switchtoSKY();
         }
 
-        if(lastID != selectedLocation[1] && itemSelected==false){
+        if(lastID != selectedLocation.id && itemSelected==false){
             
             // Highlight the selected item    
-            document.getElementById("navigatingItem_" + selectedLocation[0]).style.color = "#000000";
+            document.getElementById("navigatingItem_" + buildingLabel).style.color = "#000000";
 
             // Show thw path (using bars)
-            for(var i=0;i<selectedLocation[2].length;i++){
-                NavigatingMaterialArray[selectedLocation[2][i]].opacity = 1;   
+            for(var i=0;i<selectedLocation.path.length;i++){
+                NavigatingMaterialArray[selectedLocation.path[i]].opacity = 1;   
             }
 
             // Set opacity of all the panels
             for(var i=0;i<idNUM;i++){                                           
-                transparentMaterialForPanelsArray[i].opacity = i==selectedLocation[1] ? 0.4 : 0;
+                transparentMaterialForPanelsArray[i].opacity = i==selectedLocation.id ? 0.4 : 0;
             }
-            roomInfo(selectedLocation[1]);
+            roomInfo_label(buildingLabel);
 
-            lastID = selectedLocation[1]; 
+            lastID = selectedLocation.id; 
             itemSelected = true;
         }
     }
@@ -1469,12 +1468,10 @@ var animate = function(){
 function roomInfo(buildingID){
     if (my_json[buildingID]){
         document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
-                                //Update the default information about the department on the top right labels
         
         var list1Content = "";
         var list2Content = "";
 
-        
         for(var i=0;i<my_json[buildingID].description.length;i++){
             list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
         }
@@ -1490,6 +1487,9 @@ function roomInfo(buildingID){
         }
         if(my_json[buildingID].contact.email!=""){
             list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
+        }
+        if(my_json[buildingID].contact.tele!=""){
+            list1Content += ('<li>Tele : '+ my_json[buildingID].contact.tele +'</li>');
         }
         document.getElementById("list").innerHTML = list1Content;
 
@@ -1520,10 +1520,69 @@ function roomInfo(buildingID){
         }else{
             document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
         }
-        if(my_json[buildingID].contact.link!=""){
-            document.getElementById("Personurl").href = my_json[buildingID].contact.link;
+    }                  
+}
+
+function roomInfo_label(label){
+    const roomInfo = my_json.filter(item => { return item.label == label })[0]
+    console.log(label, roomInfo);
+
+    if (roomInfo){
+        //Update the default roomInformation about the department on the top right labels
+        document.getElementById("label").innerHTML = roomInfo.title;                           
+        
+        var list1Content = "";
+        for(var i=0;i<roomInfo.description.length;i++){
+            list1Content += ('<li>'+ roomInfo.description[i] +'</li>');     
+        }
+        if(roomInfo.tags.length!=0){
+            list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
+            for(var i=0;i<roomInfo.tags.length;i++){
+                list1Content += ('<div class="tags_class1">'+ roomInfo.tags[i] +'</div>');     
+            }
+            list1Content += '</div>';
+        }
+        if(roomInfo.contact.name!=""){
+            list1Content += `<li>In charge : ${roomInfo.contact.name}</li>`;
+        }
+        if(roomInfo.contact.email!=""){
+            list1Content += `<li>Email : ${roomInfo.contact.email}</li>`;
+        }
+        if(roomInfo.contact.tele!=""){
+            list1Content += `<li>Tele : ${roomInfo.contact.tele}</li>`;
+        }
+        if(roomInfo.contact.name!="" && roomInfo.contact.link!=""){
+            list1Content += `<li>Profile : <a href="${roomInfo.contact.link}">${roomInfo.contact.name}</li>`;
+        }
+        document.getElementById("list").innerHTML = list1Content;
+
+
+        var list2Content = "";
+        if(roomInfo.title!=""){
+            list2Content += ('<li>Location ID : '+ roomInfo.label +'</li>');
+        }
+        for(var i=0;i<roomInfo.features.length;i++){
+            list2Content += ('<li>'+ roomInfo.features[i] +'</li>');     
+        }
+        if(roomInfo.accessibility.length!=0){
+            list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
+            for(var i=0;i<roomInfo.accessibility.length;i++){
+                list2Content += ('<div class="tags_class2">'+ roomInfo.accessibility[i] +'</div>');     
+            }
+            list2Content += '</div></li>';
+        }
+        if(roomInfo.capacity.toString()!="N/A"){
+            list2Content += ('<li>Capacity : '+ roomInfo.capacity +' students</li>');
+        }
+        if(roomInfo.contact.tele!=""){
+            list2Content += ('<li>Telephone : '+ roomInfo.contact.tele +'</li>');
+        }
+        document.getElementById("list2").innerHTML = list2Content;
+
+        if(roomInfo.url.toString()!="#"){
+            document.getElementById("url").href = roomInfo.url;
         }else{
-            document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
+            document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
         }
     }                  
 }
