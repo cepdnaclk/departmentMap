@@ -1,0 +1,377 @@
+{
+    "title": "02",
+    "locations": [
+        {
+            "floor": "02",
+            "id": "FLOOR",
+            "label": "CE-02-FLOOR",
+            "title": "Second Floor",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/FLOOR/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Public"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "01",
+            "label": "CE-02-01",
+            "title": "Technical Offcer's Room",
+            "contact": {
+                "tele": "081-2393910",
+                "email": "kalumg@eng.pdn.ac.lk",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "1",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/01/index.json",
+            "description": [
+                "This room is used by Technical officer and assistant. Mr.Kelum is currently in-charge"
+            ],
+            "features": [
+                "This room has a Hardware component storage"
+            ],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Technical Officers"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "02",
+            "label": "CE-02-02",
+            "title": "Instructors' Room",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/02/index.json",
+            "description": [
+                "This is the room for Instructors and Postgraduate students",
+                "This room has working space for four"
+            ],
+            "features": [],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "03",
+            "label": "CE-02-03",
+            "title": "Industrial Automation Laboratory",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "6",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/03/index.json",
+            "description": [
+                "This lab is used for related lab activities"
+            ],
+            "features": [
+                "This lab has PLC Boards, Industrial Conveyor Belts"
+            ],
+            "tags": [
+                "Lab"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "09",
+            "label": "CE-02-09",
+            "title": "Discussion Room",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/09/index.json",
+            "description": [
+                "This room is used to have discussions of projects, activities, etc"
+            ],
+            "features": [
+                "This has a space for 30 students and White Boards and Study tables"
+            ],
+            "tags": [
+                "Public"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "05",
+            "label": "CE-02-05",
+            "title": "Lecturer's Room 1",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/05/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Staff"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "06",
+            "label": "CE-02-06",
+            "title": "Lecturer's Room 2",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/06/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Staff"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "07",
+            "label": "CE-02-07",
+            "title": "Lecturer's Room 3",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/07/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Staff"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "08",
+            "label": "CE-02-08",
+            "title": "Lecturer's Room 4",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/08/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Staff"
+            ],
+            "accessibility": [
+                "Staff"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "ENTR",
+            "label": "CE-02-ENTR",
+            "title": "Main Room",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/ENTR/index.json",
+            "description": [
+                "The lift or the staircases to enter other floors can be accessed from here"
+            ],
+            "features": [],
+            "tags": [
+                "Public"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "LIFT",
+            "label": "CE-02-LIFT",
+            "title": "Lift",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/LIFT/index.json",
+            "description": [
+                "This is a proposed part, and not existing for now"
+            ],
+            "features": [],
+            "tags": [
+                "Proposed"
+            ],
+            "accessibility": [
+                "None"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "CR01",
+            "label": "CE-02-CR01",
+            "title": "Corridor",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/CR01/index.json",
+            "description": [
+                "This corridor can be used to reach Discussion room, Hardware & CI lab, TO room, and Main room"
+            ],
+            "features": [],
+            "tags": [
+                "Public"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "OP",
+            "label": "CE-02-OP",
+            "title": "Operator Room",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "N/A",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/OP/index.json",
+            "description": [],
+            "features": [],
+            "tags": [
+                "Authorized"
+            ],
+            "accessibility": [
+                "Technical Officers"
+            ]
+        },
+        {
+            "floor": "02",
+            "id": "00",
+            "label": "CE-02-00",
+            "title": "Hardware & Computer Interfacing Lab",
+            "contact": {
+                "tele": "",
+                "email": "",
+                "name": "",
+                "link": ""
+            },
+            "capacity": "60",
+            "url": "#",
+            "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/00/index.json",
+            "description": [
+                "This lab is used for Digital Design, Embedded Systems and other courses"
+            ],
+            "features": [
+                "This lab contains 30 Computers, Oscilloscopes, Power Supplies, Signal Generators"
+            ],
+            "tags": [
+                "Lab"
+            ],
+            "accessibility": [
+                "Instructors",
+                "Postgraduates",
+                "Staff",
+                "Technical Officers",
+                "Undergraduates"
+            ]
+        }
+    ]
+}

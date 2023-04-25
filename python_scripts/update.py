@@ -3,9 +3,11 @@ import json
 import os
 
 # Where the API is available
-apiIndex = 'https://api.ce.pdn.ac.lk/locations/v1/all'
+apiIndex = 'https://api.ce.pdn.ac.lk/locations/v1'
 
-r = requests.get(apiIndex)
+floors = ['G', '01', '02', '03', '04', '05']
+
+r = requests.get("{0}/all".format(apiIndex))
 
 # Fetch data from the people.ce.pdn.ac.lk
 if r.status_code == 200:
@@ -25,4 +27,12 @@ if r.status_code == 200:
         f.write(json.dumps(data, indent=4))
 
     for floor in data:
-        # TODO: Download JSON files and save each separately
+        r2 = requests.get("{0}/{1}".format(apiIndex, floor))
+        if r2.status_code == 200:
+            floorData = json.loads(r2.text)
+
+            filenameFloor = "../data/{0}.json".format(floor)
+            os.makedirs(os.path.dirname(filenameFloor), exist_ok=True)
+
+            with open(filenameFloor, "w") as f:
+                f.write(json.dumps(floorData, indent=4))

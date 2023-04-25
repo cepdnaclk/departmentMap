@@ -153,36 +153,12 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 </div>
 <script type="text/javascript">
     //Database
-    //This database is used to load the information about the buildings
     var my_json = {}; //{{ floor_data.locations | json | replace: "=>", ":" }};
 
-    var numberofRooms = {{ floor_data.locations | size }};
-
     //List of navigating items in the navigating panel
-    let navigatingItemList = [];
+    // let navigatingItemList = [];
+
     //Navigating bars, ids and the names of the rooms
-    var buildingIDList = [["", 1, [1, 2, 3, 4]], ["", 2, [1, 2, 3, 4, 5]], ["", 3, [1, 2, 3, 6, 8, 9]], ["", 4, [1, 2, 3, 6, 8, 10]], ["", 5, [1, 2, 3, 6, 8, 10, 12, 13]], ["", 6, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 17]], ["", 7, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 18]], ["", 8, [1, 2, 3, 6, 8, 10, 12, 14]], ["", 9, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23]], ["", 10, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 22]], ["", 11, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 21]], ["", 12, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23, 24]], ["", 18, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16]], ["", 19, [1, 2, 3, 6, 8, 10, 11]], ["", 20, [1, 2, 3, 6, 7]], ["", 21, [1]]];
-
-    var buildingID_labeledList = [
-        ["CE-G-01", 1, [1, 2, 3, 4]],
-        ["CE-G-02", 2, [1, 2, 3, 4, 5]],
-        ["CE-G-03", 3, [1, 2, 3, 6, 8, 9]],
-        ["CE-G-04", 4, [1, 2, 3, 6, 8, 10]],
-        ["CE-G-05", 5, [1, 2, 3, 6, 8, 10, 12, 13]],
-        ["CE-G-06", 6, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 17]],
-        ["CE-G-07", 7, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16, 18]],
-        ["CE-G-08", 8, [1, 2, 3, 6, 8, 10, 12, 14]],
-        ["CE-G-09", 9, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23]],
-        ["CE-G-10G", 10, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 22]],
-        ["CE-G-10L", 11, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 20, 21]],
-        ["CE-G-11", 12, [1, 2, 3, 6, 8, 10, 12, 14, 15, 19, 23, 24]],
-        ["CE-G-CR01", 18, [1, 2, 3, 6, 8, 10, 12, 14, 15, 16]],
-        ["CE-G-LIFT", 19, [1, 2, 3, 6, 8, 10, 11]],
-        ["CE-G-OP", 20, [1, 2, 3, 6, 7]],
-        ["CE-G-18", 21, [1]],
-        ["CE-G-OUTSIDE", 18, [1]],
-    ];
-
     var buildingID_data = {
         "CE-G-01": { id: 1, path: [1, 2, 3, 4] },
         "CE-G-02": { id: 2, path: [1, 2, 3, 4, 5] },
@@ -207,28 +183,20 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 
     function loadBuildings() {
         var xhr = new XMLHttpRequest();		//create XHR object
-        xhr.open('GET', 'https://api.ce.pdn.ac.lk/locations/v1/G/index.json', true);
+        xhr.open('GET', '{{ site.baseurl }}/data/{{ page.floor_tag }}.json', true);
 
         xhr.onload = async function () {
             if (this.status == 200) {
-                my_json = await JSON.parse(this.responseText).locations;   //added wrapper such that values of the objects can be accessed
-                // var my_json1 = my_json.slice(0, 13);
-                // var my_json2 = my_json.slice(13,);
-                // my_json1.push(my_json[10], my_json[10], my_json[11], my_json[11]);
-                // my_json = my_json1.concat(my_json2);
-
-                //Set initial information should be appeared in the panels
-                // var blenderBuilding = importObject('./floors/FloorG.gltf',-5,0,-80,0,3.28084);  
+                //added wrapper such that values of the objects can be accessed
+                my_json = await JSON.parse(this.responseText).locations;
 
                 // TODO: Update this 
                 var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/FloorG.gltf', -5, 0, -80, 0, 3.28084);
 
-
-                for (var i = 0, j = 0; i < 16; i++, j++) {
-                    navigatingItemList[i] = "navigatingItem_" + my_json[j + 1].label;
-                    buildingIDList[i][0] = my_json[j + 1].title;
-                    buildingIDList[i][4] = my_json[j + 1].label;
-                }
+                // for (room in buildingID_data) {
+                //     console.log(room, buildingID_data[room].id);
+                //     navigatingItemList[buildingID_data[room].id] = "navigatingItem_" + room;
+                // }
 
                 roomInfo(defaultID);
                 animate();

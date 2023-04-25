@@ -913,43 +913,43 @@ function changeCorners(){   //Change the shape of the corners of the layouts
     }
 }
 
-document.getElementById("searchQueryInput").addEventListener('input',function(evt){     //When the input changes
-    var currentInput = document.getElementById("searchQueryInput").value;       //Take the text in the input field
-    if(currentInput==""){
-        document.getElementById("searchQuerydelete").style.display = "none";        //Hide the input remover button
-        document.getElementById("searchQuerySubmit").style.marginLeft = "-15.1%";       //Set the alignment of submit button
-    }else{
-        document.getElementById("searchQuerydelete").style.display = "flex";        //Show the input remover button
-        document.getElementById("searchQuerySubmit").style.marginLeft = "-0.5%";       //Set the alignment of submit button
-    }
-    document.getElementById("roomList").scrollTo(0, 0);                         //Scroll to top
-    for(var i=0;i<buildingIDList.length;i++){                       //Sort the buildingID List according to the text
-        for(var j=i+1;j<buildingIDList.length;j++){ 
-            if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
-                if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())!=-1){
-                    var wordHolder = buildingIDList[i];
-                    buildingIDList[i] = buildingIDList[j];
-                    buildingIDList[j] = wordHolder;
-                }
-            }else if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
-            }else if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())>buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())){
-                var wordHolder = buildingIDList[i];
-                buildingIDList[i] = buildingIDList[j];
-                buildingIDList[j] = wordHolder;
-            }
-        }
-    }
-    for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
-            document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];    
-    }
-    if(itemSelected){
-        for(var i=0;i<navigatingItemList.length;i++){       //Highlight the earlier highlighed item
-            document.getElementById(navigatingItemList[i]).style.color = buildingIDList[i][1] ==lastID?"#000000":"#BBBBBB";    
-        }
-    }
-});
+// document.getElementById("searchQueryInput").addEventListener('input',function(evt){     //When the input changes
+//     var currentInput = document.getElementById("searchQueryInput").value;       //Take the text in the input field
+//     if(currentInput==""){
+//         document.getElementById("searchQuerydelete").style.display = "none";        //Hide the input remover button
+//         document.getElementById("searchQuerySubmit").style.marginLeft = "-15.1%";       //Set the alignment of submit button
+//     }else{
+//         document.getElementById("searchQuerydelete").style.display = "flex";        //Show the input remover button
+//         document.getElementById("searchQuerySubmit").style.marginLeft = "-0.5%";       //Set the alignment of submit button
+//     }
+//     document.getElementById("roomList").scrollTo(0, 0);                         //Scroll to top
+//     for(var i=0;i<buildingIDList.length;i++){                       //Sort the buildingID List according to the text
+//         for(var j=i+1;j<buildingIDList.length;j++){ 
+//             if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
+//                 if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())!=-1){
+//                     var wordHolder = buildingIDList[i];
+//                     buildingIDList[i] = buildingIDList[j];
+//                     buildingIDList[j] = wordHolder;
+//                 }
+//             }else if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
+//             }else if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())>buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())){
+//                 var wordHolder = buildingIDList[i];
+//                 buildingIDList[i] = buildingIDList[j];
+//                 buildingIDList[j] = wordHolder;
+//             }
+//         }
+//     }
+//     for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
+//             document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];    
+//     }
+//     if(itemSelected){
+//         for(var i=0;i<navigatingItemList.length;i++){       //Highlight the earlier highlighed item
+//             document.getElementById(navigatingItemList[i]).style.color = buildingIDList[i][1] ==lastID?"#000000":"#BBBBBB";    
+//         }
+//     }
+// });
     
-var lastID = -5;        //BuldingID of the last showPath function call
+var lastID = null;        //BuldingID of the last showPath function call
 var itemSelected = 0;   //Used to flag whether item has been selected or not
 async function showPath(buildingID){
     if(itemSelected){   //If item has been selected
@@ -987,7 +987,6 @@ async function showPath(buildingID){
     }
     // itemSelected = !itemSelected;   //Change the flag
 }
-
 
 async function showPath_byLabel(buildingLabel){
     const selectedLocation = buildingID_data[buildingLabel];
@@ -1043,130 +1042,132 @@ async function showPath_byLabel(buildingLabel){
     }
 }
 
-function findData(){    //This function gives the search results of navigating panel
-    if(itemSelected){showPath(5);}              //pickout the paths TODO: Update
-    var newBuildingIDList = [];
-    var currentWord = document.getElementById("searchQueryInput").value.toLowerCase();
-    for(var i=0;i<currentWord.length;i++){      //Here all the substrings in gvien word will be searched (exx:-  for 'abc' -> abc, ab, bc, a, b ,c)
-        for(var k=0;k<i+1;k++){
-            currentInput = currentWord.substr(k,currentWord.length-i);
-            for(var j=0;j<buildingIDList.length;){               
-                if(my_json[buildingIDList[j][1]].label!="" && my_json[buildingIDList[j][1]].label.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].label.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].title!="" && my_json[buildingIDList[j][1]].title.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].title.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.tele!="" && my_json[buildingIDList[j][1]].contact.tele.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.tele.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.email!="" && my_json[buildingIDList[j][1]].contact.email.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.email.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.name!="" && my_json[buildingIDList[j][1]].contact.name.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.name.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.link!="" && my_json[buildingIDList[j][1]].contact.link.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.link.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].capacity.toString()!="N/A" && my_json[buildingIDList[j][1]].capacity.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].capacity.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].url.toString()!="#" && my_json[buildingIDList[j][1]].url.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].url.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].description.length!=0 && my_json[buildingIDList[j][1]].description.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].description.length;k++){
-                        if(my_json[buildingIDList[j][1]].description[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].description[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].features.length!=0 && my_json[buildingIDList[j][1]].features.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].features.length;k++){
-                        if(my_json[buildingIDList[j][1]].features[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].features[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].tags.length!=0 && my_json[buildingIDList[j][1]].tags.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].tags.length;k++){
-                        if(my_json[buildingIDList[j][1]].tags[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].tags[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].accessibility.length!=0 && my_json[buildingIDList[j][1]].accessibility.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].accessibility.length;k++){
-                        if(my_json[buildingIDList[j][1]].accessibility[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].accessibility[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }
-                j=j+1;    
-            }
-        }
-    }
-    for(var i=0;i<buildingIDList.length;i++){       //Update the navigating Item list according to the new buildingID list
-        buildingIDList[i][3] = "<not style='color:#CBAAAA'>not found</not>";    
-    }
-    buildingIDList = newBuildingIDList.concat(buildingIDList);
+// TODO: Implement the search with Dictionary 
 
-    //Update the navigating Item list according to the new buildingID list
-    for(var i=0;i<navigatingItemList.length;i++){       
-        const resData = buildingIDList.filter((item) => {return item[4] == navigatingItemList[i].split("_")[1] })[0];
-        if (resData){
-            document.getElementById(navigatingItemList[i]).innerHTML = resData[0] + "<div class='hel'>"+resData[3]+"</div>";
-        }
-    }
-}
+// function findData(){    //This function gives the search results of navigating panel
+//     if(itemSelected){showPath(5);}              //pickout the paths TODO: Update
+//     var newBuildingIDList = [];
+//     var currentWord = document.getElementById("searchQueryInput").value.toLowerCase();
+//     for(var i=0;i<currentWord.length;i++){      //Here all the substrings in gvien word will be searched (exx:-  for 'abc' -> abc, ab, bc, a, b ,c)
+//         for(var k=0;k<i+1;k++){
+//             currentInput = currentWord.substr(k,currentWord.length-i);
+//             for(var j=0;j<buildingIDList.length;){               
+//                 if(my_json[buildingIDList[j][1]].label!="" && my_json[buildingIDList[j][1]].label.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].label.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].title!="" && my_json[buildingIDList[j][1]].title.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].title.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.tele!="" && my_json[buildingIDList[j][1]].contact.tele.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.tele.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.email!="" && my_json[buildingIDList[j][1]].contact.email.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.email.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.name!="" && my_json[buildingIDList[j][1]].contact.name.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.name.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.link!="" && my_json[buildingIDList[j][1]].contact.link.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.link.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].capacity.toString()!="N/A" && my_json[buildingIDList[j][1]].capacity.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].capacity.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].url.toString()!="#" && my_json[buildingIDList[j][1]].url.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].url.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].description.length!=0 && my_json[buildingIDList[j][1]].description.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].description.length;k++){
+//                         if(my_json[buildingIDList[j][1]].description[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].description[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].features.length!=0 && my_json[buildingIDList[j][1]].features.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].features.length;k++){
+//                         if(my_json[buildingIDList[j][1]].features[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].features[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].tags.length!=0 && my_json[buildingIDList[j][1]].tags.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].tags.length;k++){
+//                         if(my_json[buildingIDList[j][1]].tags[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].tags[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].accessibility.length!=0 && my_json[buildingIDList[j][1]].accessibility.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].accessibility.length;k++){
+//                         if(my_json[buildingIDList[j][1]].accessibility[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].accessibility[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }
+//                 j=j+1;    
+//             }
+//         }
+//     }
+//     for(var i=0;i<buildingIDList.length;i++){       //Update the navigating Item list according to the new buildingID list
+//         buildingIDList[i][3] = "<not style='color:#CBAAAA'>not found</not>";    
+//     }
+//     buildingIDList = newBuildingIDList.concat(buildingIDList);
+
+//     //Update the navigating Item list according to the new buildingID list
+//     for(var i=0;i<navigatingItemList.length;i++){       
+//         const resData = buildingIDList.filter((item) => {return item[4] == navigatingItemList[i].split("_")[1] })[0];
+//         if (resData){
+//             document.getElementById(navigatingItemList[i]).innerHTML = resData[0] + "<div class='hel'>"+resData[3]+"</div>";
+//         }
+//     }
+// }
 
 function deleteInput(){
-    document.getElementById("searchQueryInput").value = "";
-    var event = document.createEvent('Event');
-    event.initEvent('input', true, true);
-    document.getElementById("searchQueryInput").dispatchEvent(event);
+    // document.getElementById("searchQueryInput").value = "";
+    // var event = document.createEvent('Event');
+    // event.initEvent('input', true, true);
+    // document.getElementById("searchQueryInput").dispatchEvent(event);
 }
 
 function showDetails(){         //This function shows the pop up window (contact details of the developers)
@@ -1232,43 +1233,43 @@ function redirectToAccount(pageID){
 
 //Key Controls
 document.onkeydown = function(event){   //Set event listeners for key presses
-    if(document.getElementById("searchQueryInput")!=document.activeElement && (!transition)){    //If input field hasn't been focused
-        switch (event.keyCode){
-            case 37:    //arrow left
-                turnleft();
-                break;
-            case 38:    //Aroow up
-                forward();
-                break;
-            case 39:    //Arrow right
-                turnright();
-                break;
-            case 40:    //Arrow down
-                backward();
-                break;
-            case 83:    //Letter s
-                turnup();
-                break;
-            case 65:    //Letter a
-                turndown();
-                break;
-            case 87:    //Letter w
-                if(ViewMode=="sky" || ViewMode=="drone"){
-                    switchtoWALK();
-                }
-                break;
-            case 68:    //Letter d
-                if(ViewMode=="sky" || ViewMode=="walk"){
-                    switchtoDRONE();
-                }
-                break;
-            case 66:    //Letter b
-                if(ViewMode=="drone" || ViewMode=="walk"){
-                    switchtoSKY();
-                }
-                break;
-        }
-    }
+    // if(document.getElementById("searchQueryInput")!=document.activeElement && (!transition)){    //If input field hasn't been focused
+    //     switch (event.keyCode){
+    //         case 37:    //arrow left
+    //             turnleft();
+    //             break;
+    //         case 38:    //Aroow up
+    //             forward();
+    //             break;
+    //         case 39:    //Arrow right
+    //             turnright();
+    //             break;
+    //         case 40:    //Arrow down
+    //             backward();
+    //             break;
+    //         case 83:    //Letter s
+    //             turnup();
+    //             break;
+    //         case 65:    //Letter a
+    //             turndown();
+    //             break;
+    //         case 87:    //Letter w
+    //             if(ViewMode=="sky" || ViewMode=="drone"){
+    //                 switchtoWALK();
+    //             }
+    //             break;
+    //         case 68:    //Letter d
+    //             if(ViewMode=="sky" || ViewMode=="walk"){
+    //                 switchtoDRONE();
+    //             }
+    //             break;
+    //         case 66:    //Letter b
+    //             if(ViewMode=="drone" || ViewMode=="walk"){
+    //                 switchtoSKY();
+    //             }
+    //             break;
+    //     }
+    // }
 }
 
 buttoncontrolsarray = ["left","right","up","down","front","back"];
