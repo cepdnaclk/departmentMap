@@ -190,13 +190,7 @@ assets_coordinates: '-5,0,-80,0,3.28084'
                 //added wrapper such that values of the objects can be accessed
                 my_json = await JSON.parse(this.responseText).locations;
 
-                // TODO: Update this 
                 var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/FloorG.gltf', -5, 0, -80, 0, 3.28084);
-
-                // for (room in buildingID_data) {
-                //     console.log(room, buildingID_data[room].id);
-                //     navigatingItemList[buildingID_data[room].id] = "navigatingItem_" + room;
-                // }
 
                 roomInfo(defaultID);
                 animate();
@@ -231,9 +225,12 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 
 
 </script>
+
 <script src="commonContent.js"></script>
 <script type="text/javascript">
-
+    var PanelsList = [];
+    var idsOfPanelList = [];
+    var transparentWallsList = [];
 
     //Creating transparent objects by using the created function above
     var G01_door1 = createTransparentObject(1, "v", -11.15, -68.63);//
@@ -300,10 +297,6 @@ assets_coordinates: '-5,0,-80,0,3.28084'
     var G21_door4 = createTransparentObject(21, "v", -11.37, -61.9);
     var G21_door5 = createTransparentObject(21, "v", -11.37, -68.63);
 
-
-    var PanelsList = [];
-    var idsOfPanelList = [];
-
     var panel01_1BB = createTransparentPanel(1, 7.63, 13.56, -15.34, -72.785); PanelsList.push(panel01_1BB);
 
     var panel02_1BB = createTransparentPanel(2, 2.64, 13.63, -20.595, -72.785); PanelsList.push(panel02_1BB);
@@ -349,9 +342,6 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 
     var panel21_1BB = createTransparentPanel(21, 10.75, 9.2, -5.775, -75); PanelsList.push(panel21_1BB);
     var panel21_2BB = createTransparentPanel(21, 4.8, 12.8, -8.67, -64); PanelsList.push(panel21_2BB);
-
-
-    var transparentWallsList = [];
 
     var cubeV1BB = createWall(Y, 63.3, -0.2, -41.65); transparentWallsList.push(cubeV1BB);
     var cubeV2BB = createWall(Y, 3.04, -0.2, -78.46); transparentWallsList.push(cubeV2BB);

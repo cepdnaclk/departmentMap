@@ -1332,13 +1332,14 @@ var initLabel = null;
 
 async function checkURL(){  //If there is a hash segment in the URL, this functon will switch camera to bird mode and show the particular room 
     urlHash = location.hash.substring(1).trim();   //Take the hash segment
+    console.log("#", urlHash);
+
     if(urlHash!=""){                        //Checking whether it is empty
         console.log("URL Hash detected", urlHash);
-        const res = await buildingIDList.filter((item) => { return item[4] == urlHash });
-   
+        const res = await buildingID_data[urlHash];
     
-        if(res.length > 0){
-            initLabel = res[0][4]
+        if(res){
+            initLabel = urlHash
             switchtoSKY();
         }
     }
@@ -1384,20 +1385,23 @@ topballBB.setFromObject(topCameraBall);
 
 
 function checkfrontIntersection(){      //Checking whether front ball is intersecting with any wall
-    var sum=0;
-    for(var i=0;i<transparentWallsList.length;i++){
-        if(frontballBB.intersectsBox(transparentWallsList[i])){
-            return 1;
-        } 
+    if(transparentWallsList){
+        for(var i=0;i<transparentWallsList.length;i++){
+            if(frontballBB.intersectsBox(transparentWallsList[i])){
+                return 1;
+            } 
+        }
     }
     return 0;
 }
 function checkbackIntersection(){       //Checking whether back ball is intersecting with any wall
-    var sum=0;
-    for(var i=0;i<transparentWallsList.length;i++){
-        if(backballBB.intersectsBox(transparentWallsList[i])){
-            return 1;
-        } 
+    if(transparentWallsList){
+        var sum=0;
+        for(var i=0;i<transparentWallsList.length;i++){
+            if(backballBB.intersectsBox(transparentWallsList[i])){
+                return 1;
+            } 
+        }
     }
     return 0;
 }
@@ -1417,19 +1421,22 @@ function checkCollision(){          //Checking whether front or back ball is int
 
 var lastpanel = -1;         //The id of the last panel top camera ball was intersecting with (default-> -1)
 function checkRoom(){       //This function checks whether top camera ball is intersecting with any panel
-    for(var i=0;i<PanelsList.length;i++){
-        if(topballBB.intersectsBox(PanelsList[i])){
-            if((!clicked) && (i!=lastpanel)){           //If object hasn't been clicked and if top camera ball intersects with a new panel
-                defaultID=idsOfPanelList[i];
-                roomInfo(defaultID);
-                lastpanel = i;
-            }else if((clicked) && (i!=lastpanel)){
-                defaultID=idsOfPanelList[i];
-                lastpanel = i;
-            }        
-            return 0;
+    if(PanelsList){
+        for(var i=0;i<PanelsList.length;i++){
+            if(topballBB.intersectsBox(PanelsList[i])){
+                if((!clicked) && (i!=lastpanel)){           //If object hasn't been clicked and if top camera ball intersects with a new panel
+                    defaultID=idsOfPanelList[i];
+                    roomInfo(defaultID);
+                    lastpanel = i;
+                }else if((clicked) && (i!=lastpanel)){
+                    defaultID=idsOfPanelList[i];
+                    lastpanel = i;
+                }        
+                return 0;
+            }
         }
     }
+
     if(defaultID !=0 && (!clicked)){
         defaultID=0;                
         roomInfo(defaultID);
@@ -1468,59 +1475,7 @@ var animate = function(){
 //Update information panel
 function roomInfo(buildingID){
     if (my_json[buildingID]){
-        document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
-        
-        var list1Content = "";
-        var list2Content = "";
-
-        for(var i=0;i<my_json[buildingID].description.length;i++){
-            list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
-        }
-        if(my_json[buildingID].tags.length!=0){
-            list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
-            for(var i=0;i<my_json[buildingID].tags.length;i++){
-                list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
-            }
-            list1Content += '</div>';
-        }
-        if(my_json[buildingID].contact.name!=""){
-            list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
-        }
-        if(my_json[buildingID].contact.email!=""){
-            list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
-        }
-        if(my_json[buildingID].contact.tele!=""){
-            list1Content += ('<li>Tele : '+ my_json[buildingID].contact.tele +'</li>');
-        }
-        document.getElementById("list").innerHTML = list1Content;
-
-
-        if(my_json[buildingID].title!=""){
-            list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
-        }
-        for(var i=0;i<my_json[buildingID].features.length;i++){
-            list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
-        }
-        if(my_json[buildingID].accessibility.length!=0){
-            list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
-            for(var i=0;i<my_json[buildingID].accessibility.length;i++){
-                list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
-            }
-            list2Content += '</div></li>';
-        }
-        if(my_json[buildingID].capacity.toString()!="N/A"){
-            list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
-        }
-        if(my_json[buildingID].contact.tele!=""){
-            list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
-        }
-        document.getElementById("list2").innerHTML = list2Content;
-
-        if(my_json[buildingID].url.toString()!="#"){
-            document.getElementById("url").href = my_json[buildingID].url;
-        }else{
-            document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
-        }
+        roomInfo_label(my_json[buildingID].label)
     }                  
 }
 
@@ -1555,30 +1510,29 @@ function roomInfo_label(label){
         if(roomInfo.contact.name!="" && roomInfo.contact.link!=""){
             list1Content += `<li>Profile : <a href="${roomInfo.contact.link}">${roomInfo.contact.name}</li>`;
         }
-        document.getElementById("list").innerHTML = list1Content;
 
-
-        var list2Content = "";
         if(roomInfo.title!=""){
-            list2Content += ('<li>Location ID : '+ roomInfo.label +'</li>');
+            list1Content += ('<li>Location ID : '+ roomInfo.label +'</li>');
         }
         for(var i=0;i<roomInfo.features.length;i++){
-            list2Content += ('<li>'+ roomInfo.features[i] +'</li>');     
+            list1Content += ('<li>'+ roomInfo.features[i] +'</li>');     
         }
         if(roomInfo.accessibility.length!=0){
-            list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
+            list1Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
             for(var i=0;i<roomInfo.accessibility.length;i++){
-                list2Content += ('<div class="tags_class2">'+ roomInfo.accessibility[i] +'</div>');     
+                list1Content += ('<div class="tags_class2">'+ roomInfo.accessibility[i] +'</div>');     
             }
-            list2Content += '</div></li>';
+            list1Content += '</div></li>';
         }
         if(roomInfo.capacity.toString()!="N/A"){
-            list2Content += ('<li>Capacity : '+ roomInfo.capacity +' students</li>');
+            list1Content += ('<li>Capacity : '+ roomInfo.capacity +' students</li>');
         }
         if(roomInfo.contact.tele!=""){
-            list2Content += ('<li>Telephone : '+ roomInfo.contact.tele +'</li>');
+            list1Content += ('<li>Telephone : '+ roomInfo.contact.tele +'</li>');
         }
-        document.getElementById("list2").innerHTML = list2Content;
+
+        // document.getElementById("list2").innerHTML = list1Content;
+        document.getElementById("list").innerHTML = list1Content;
 
         if(roomInfo.url.toString()!="#"){
             document.getElementById("url").href = roomInfo.url;

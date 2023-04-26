@@ -218,8 +218,9 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 <script src="commonContent.js"></script>
 <script type="text/javascript">
 
-
-    //Importing the blender object using the created function above
+    var PanelsList = [];
+    var idsOfPanelList = [];
+    var transparentWallsList = [];
 
     //Creating transparent doors by using the created function above        
     var F01_door1 = createTransparentObject(1, "h", -16.52, -61.98);   //incubation centre 1
@@ -282,10 +283,6 @@ assets_coordinates: '-5,0,-80,0,3.28084'
     var F20_door2 = createTransparentObject(20, "th4", -7.71, -57.60);
     var F20_door3 = createTransparentObject(20, "v", -9.49, -66.42);
 
-    //Creating transparent panels using the created function above
-    var PanelsList = [];
-    var idsOfPanelList = [];
-
     var panel01_01 = createTransparentPanel(1, 13.55, 3.7, -16.23, -59.75); PanelsList.push(panel01_01);
     var panel01_02 = createTransparentPanel(1, 11.57, 1.075, -17.2, -57.36); PanelsList.push(panel01_02);
 
@@ -332,9 +329,6 @@ assets_coordinates: '-5,0,-80,0,3.28084'
     var panel19_01 = createTransparentPanel(19, 5.6, 2.65, -3.2, -66.695); PanelsList.push(panel19_01);
 
     var panel20_01 = createTransparentPanel(20, 2.74, 10.12, -7.77, -62.98); PanelsList.push(panel20_01);
-
-    //Creating transparent walls using the created function above
-    var transparentWallsList = [];
 
     var cubeV1BB = createWall(Y, 70, -0.2, -45); transparentWallsList.push(cubeV1BB);
     var cubeV2BB = createWall(Y, 70, -30.8, -45); transparentWallsList.push(cubeV2BB);

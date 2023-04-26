@@ -11,10 +11,10 @@
     <link rel="shortcut icon" type="x-icon" href="images/icon.png">
     <link rel="stylesheet" href="style.css" /> <!--Linking the css file-->
 
-    <script src="./js/three.js"></script> <!-- Importing the three.js library-->
-    <script src="./js/jquery.js"></script> <!-- Importing the jquery.js library-->
-    <script src="./js/threex.domevents.js"></script> <!-- Importing the threex.domevents.js library-->
-    <script src="./js/GLTFLoader.js"></script> <!-- Importing the GLTFLoader.js library-->
+    <script src="{{ '/assets/js/three.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/jquery.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/threex.domevents.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/GLTFLoader.js' | relative_url }}"></script>
 </head>
 
 <body>
@@ -32,15 +32,7 @@
                 <li></li>
             </ul>
         </div>
-        <div id="hint" class="hint_class">Click on the blue panel for more details</div>
-        <div id="more_information" class="more_information_class"> <!--Top right more information label-->
-            <p2 id="label2" class="label2_class">More information here</p2>
-            <ul id="list2" class="list2_class" style="list-style-image: url(images/bullet2.png);">
-                <!--Top right more information list-->
-                <li></li>
-            </ul>
-            <div class="line"></div>
-        </div>
+        <div id="hint" class="hint_class">&nbsp;</div>
     </div>
 
     <div id="latterPanel" class="latterPanelClass">
