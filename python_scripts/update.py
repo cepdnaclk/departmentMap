@@ -9,7 +9,7 @@ floors = ['G', '01', '02', '03', '04', '05']
 
 r = requests.get("{0}/all".format(apiIndex))
 
-# Fetch data from the people.ce.pdn.ac.lk
+# Fetch data from the api.ce.pdn.ac.lk
 if r.status_code == 200:
     data = json.loads(r.text)
 
