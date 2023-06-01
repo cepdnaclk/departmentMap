@@ -153,10 +153,7 @@ assets_coordinates: '-5,0,-80,0,3.28084'
 </div>
 <script type="text/javascript">
     //Database
-    var my_json = {}; //{{ floor_data.locations | json | replace: "=>", ":" }};
-
-    //List of navigating items in the navigating panel
-    // let navigatingItemList = [];
+    var my_json = {};
 
     //Navigating bars, ids and the names of the rooms
     var buildingID_data = {
@@ -190,7 +187,7 @@ assets_coordinates: '-5,0,-80,0,3.28084'
                 //added wrapper such that values of the objects can be accessed
                 my_json = await JSON.parse(this.responseText).locations;
 
-                var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/FloorG.gltf', -5, 0, -80, 0, 3.28084);
+                var blenderBuilding = await importObject('{{ "/floors/FloorG.gltf" | relative_url }}', -5, 0, -80, 0, 3.28084);
 
                 roomInfo(defaultID);
                 animate();
@@ -222,7 +219,6 @@ assets_coordinates: '-5,0,-80,0,3.28084'
     var barNUM = 25;    //Number of navigating bars
     var defaultID = 0;    //This is the id of the default information should be shown
     var activebuttons = 0;      //This indicates whether button controls are active or not
-
 
 </script>
 

@@ -5,7 +5,7 @@ title: "First Floor"
 parent: "ViewIn3D"
 index: 1
 
-floor_tag: "1"
+floor_tag: "01"
 assets_file: 'F1_Assets.gltf'
 assets_coordinates: '-5,0,-10,Math.PI,3.28084'
 ---
@@ -155,39 +155,43 @@ assets_coordinates: '-5,0,-10,Math.PI,3.28084'
     //Database
     //This database is used to load the information about the buildings
     var my_json = {};
-    var numberofRooms = 14;
-    //List of navigating items in the navigating panel
-    let navigatingItemList = [];
-    //Navigating bars, ids and the names of the rooms
-    var buildingIDList = [["", 1, [1, 2, 3, 5]], ["", 2, [1, 6, 7, 10]], ["", 3, [1, 6, 7, 8]], ["", 4, [1, 6, 7, 8, 9]], ["", 5, [1, 11, 12]], ["", 6, [1, 11, 13, 14]], ["", 7, [1, 11, 13, 15, 16]], ["", 8, [1, 11, 13, 15, 17]], ["", 9, [1, 11]], ["", 10, [1, 6]], ["", 11, []], ["", 12, [1, 2, 3, 4]], ["", 13, [0]], ["", 14, [1, 2]]];
+
+    var buildingID_data = {
+        "CE-01-01": { id: 1, path: [1, 2, 3, 5] },
+        "CE-01-02": { id: 2, path: [1, 6, 7, 10] },
+        "CE-01-03": { id: 3, path: [1, 6, 7, 8] },
+        "CE-01-04": { id: 4, path: [1, 6, 7, 8, 9] },
+        "CE-01-05": { id: 5, path: [1, 11, 12] },
+        "CE-01-06": { id: 6, path: [1, 11, 13, 14] },
+        "CE-01-07": { id: 7, path: [1, 11, 13, 15, 16] },
+        "CE-01-08": { id: 8, path: [1, 11, 13, 15, 17] },
+        "CE-01-09": { id: 9, path: [1, 11] },
+        "CE-01-CR01": { id: 10, path: [1, 6] },
+        "CE-01-ENTR": { id: 11, path: [] },
+        "CE-01-OP": { id: 12, path: [1, 2, 3, 4] },
+        "CE-01-LIFT": { id: 13, path: [0] },
+        "CE-01-00": { id: 14, path: [1, 2] },
+    }
 
     loadBuildings();
 
     function loadBuildings() {
 
         var xhr = new XMLHttpRequest();		//create XHR object
-        xhr.open('GET', 'https://api.ce.pdn.ac.lk/locations/v1/01/index.json', true);
+        xhr.open('GET', '{{ site.baseurl }}/data/{{ page.floor_tag }}.json', true);
 
         xhr.onload = async function () {
             if (this.status == 200) {
-                my_json = await JSON.parse(this.responseText).locations;   //added wrapper such that values of the objects can be accessed
-                // console.log(my_json);		
-                roomInfo(defaultID);       			//Set initial information should be appeared in the panels
-                // var blenderBuilding = importObject('./floors/Floor1.gltf',-5,0,-10,Math.PI,3.28084); 
-                var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/Floor1.gltf', -5, 0, -10, Math.PI, 3.28084);
+                //added wrapper such that values of the objects can be accessed
+                my_json = await JSON.parse(this.responseText).locations;
+
+                var blenderBuilding = await importObject('{{ "/floors/Floor1.gltf" | relative_url }}', -5, 0, -10, Math.PI, 3.28084);
+
+                roomInfo(defaultID);
                 animate();
                 checkURL();
 
-                for (var i = 0; i < numberofRooms; i++) {
-                    navigatingItemList[i] = "navigatingItem" + (i + 1).toString();
-                    buildingIDList[i][0] = my_json[i + 1].title;
-                }
-                //Setting the initial names of the navigating panel list items
-                for (var i = 0; i < numberofRooms; i++) {
-                    document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];
-                }
-            }
-            else {
+            } else {
                 alert("File not found..!! Check the database file name or URL and try again !! ");	//when there's an error in accessing the json file
             }
         }
@@ -214,7 +218,6 @@ assets_coordinates: '-5,0,-10,Math.PI,3.28084'
     var barNUM = 18;    //Number of navigating bars
     var defaultID = 0;    //This is the id of the default information should be shown
     var activebuttons = 0;      //This indicates whether button controls are active or not
-
 
 </script>
 <script src="commonContent.js"></script>

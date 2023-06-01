@@ -5,7 +5,7 @@ title: "Second Floor"
 parent: "ViewIn3D"
 index: 2
 
-floor_tag: "2"
+floor_tag: "02"
 assets_file: 'F2_Assets.gltf'
 assets_coordinates: '-5,0,-10,Math.PI,3.28084'
 ---
@@ -154,40 +154,40 @@ assets_coordinates: '-5,0,-10,Math.PI,3.28084'
     //Database
     //This database is used to load the information about the buildings
     var my_json = {};
-    var numberofRooms = 13;
-    //List of navigating items in the navigating panel
-    let navigatingItemList = [];
-    //Navigating bars, ids and the names of the rooms
-    var buildingIDList = [["", 1, [1, 2, 3, 4, 18, 6, 8]], ["", 2, [1, 2, 3, 9]], ["", 3, [1, 2, 3, 9, 10]], ["", 4, [1, 2, 3, 11]], ["", 5, [1, 2, 3, 11, 12]], ["", 6, [1, 2, 3, 11, 13, 14]], ["", 7, [1, 2, 3, 11, 13, 15, 16]], ["", 8, [1, 2, 3, 11, 13, 15, 17]], ["", 9, [1]], ["", 10, [1, 0]], ["", 11, [1, 2, 3, 4]], ["", 12, [1, 2, 3, 4, 18, 6, 7]], ["", 13, [1, 2, 3, 4, 18, 5]]];
 
+    var buildingID_data = {
+        "CE-02-01": { id: 1, path: [1, 2, 3, 4, 18, 6, 8] },
+        "CE-02-02": { id: 2, path: [1, 2, 3, 9] },
+        "CE-02-03": { id: 3, path: [1, 2, 3, 9, 10] },
+        "CE-02-04": { id: 4, path: [1, 2, 3, 11] },
+        "CE-02-05": { id: 5, path: [1, 2, 3, 11, 12] },
+        "CE-02-06": { id: 6, path: [1, 2, 3, 11, 13, 14] },
+        "CE-02-07": { id: 7, path: [1, 2, 3, 11, 13, 15, 16] },
+        "CE-02-08": { id: 8, path: [1, 2, 3, 11, 13, 15, 17] },
+        "CE-02-ENTR": { id: 9, path: [1] },
+        "CE-02-LIFT": { id: 10, path: [1, 0] },
+        "CE-02-CR01": { id: 11, path: [1, 2, 3, 4] },
+        "CE-02-OP": { id: 12, path: [1, 2, 3, 4, 18, 6, 7] },
+        "CE-02-00": { id: 13, path: [1, 2, 3, 4, 18, 5] },
+    };
     loadBuildings();
 
     function loadBuildings() {
 
         var xhr = new XMLHttpRequest();		//create XHR object
-        xhr.open('GET', 'https://api.ce.pdn.ac.lk/locations/v1/02/index.json', true);
+        xhr.open('GET', '{{ site.baseurl }}/data/{{ page.floor_tag }}.json', true);
 
         xhr.onload = async function () {
             if (this.status == 200) {
-                my_json = await JSON.parse(this.responseText).locations;   //added wrapper such that values of the objects can be accessed
-                //console.log(my_json);		
-                roomInfo(defaultID);       			//Set initial information should be appeared in the panels
-                // var blenderBuilding = importObject('./floors/Floor2.gltf',-5,0,-10,Math.PI,3.28084);
-                var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/Floor2.gltf', -5, 0, -10, Math.PI, 3.28084);
+                //added wrapper such that values of the objects can be accessed
+                my_json = await JSON.parse(this.responseText).locations;
+                var blenderBuilding = await importObject('{{ "/floors/Floor2.gltf" | relative_url }}', -5, 0, -10, Math.PI, 3.28084);
+
+                roomInfo(defaultID);
                 animate();
                 checkURL();
 
-                for (var i = 0; i < numberofRooms; i++) {
-                    navigatingItemList[i] = "navigatingItem" + (i + 1).toString();
-                    buildingIDList[i][0] = my_json[i + 1].title;
-                }
-                //Setting the initial names of the navigating panel list items
-                for (var i = 0; i < numberofRooms; i++) {
-                    document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];
-                }
-
-            }
-            else {
+            } else {
                 alert("File not found..!! Check the database file name or URL and try again !! ");	//when there's an error in accessing the json file
             }
         }
@@ -196,7 +196,6 @@ assets_coordinates: '-5,0,-10,Math.PI,3.28084'
         }
         xhr.send();
     }
-
 
     var clicked = 0;                //To check whether a building has been clicked or not
     var expanding = 0;              //To check if top right labels are expanding or not
@@ -214,7 +213,6 @@ assets_coordinates: '-5,0,-10,Math.PI,3.28084'
     var barNUM = 19;    //Number of navigating bars
     var defaultID = 9;    //This is the id of the default information should be shown
     var activebuttons = 0;      //This indicates whether button controls are active or not
-
 
 </script>
 <script src="commonContent.js"></script>

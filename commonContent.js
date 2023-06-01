@@ -54,10 +54,10 @@ function addMouseEvents(cube, buildingID){                                      
                 document.getElementById("main_information").style.height = "75%";
                 document.getElementById("hint").style.height = "7.5%";
                 document.getElementById("controlLayout").style.height = "20%";
-                document.getElementById("more_information").style.removeProperty('min-height');
-                document.getElementById("more_information").style.padding = "0%";
-                document.getElementById("more_information").style.marginTop = "0%";
-                document.getElementById("more_information").style.margin = "0%";
+                // document.getElementById("more_information").style.removeProperty('min-height');
+                // document.getElementById("more_information").style.padding = "0%";
+                // document.getElementById("more_information").style.marginTop = "0%";
+                // document.getElementById("more_information").style.margin = "0%";
                 document.getElementById("label2").style.fontSize = "0vmin";
                 document.getElementById("list2").style.fontSize = "0vmin";
                 for(var i=0;i<idNUM;i++){
@@ -990,6 +990,8 @@ async function showPath(buildingID){
 
 async function showPath_byLabel(buildingLabel){
     const selectedLocation = buildingID_data[buildingLabel];
+
+    console.log(buildingLabel);
 
     // TODO: Fix dubble selection bug 
 
