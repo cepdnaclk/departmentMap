@@ -1030,6 +1030,37 @@
             },
             {
                 "floor": "02",
+                "id": "04",
+                "label": "CE-02-04",
+                "title": "Discussion Room",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "N/A",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/04/index.json",
+                "description": [
+                    "This room is used to have discussions of projects, activities, etc"
+                ],
+                "features": [
+                    "This has a space for 30 students and White Boards and Study tables"
+                ],
+                "tags": [
+                    "Public"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
+            },
+            {
+                "floor": "02",
                 "id": "05",
                 "label": "CE-02-05",
                 "title": "Lecturer's Room 1",
@@ -1118,37 +1149,6 @@
                 ],
                 "accessibility": [
                     "Staff"
-                ]
-            },
-            {
-                "floor": "02",
-                "id": "09",
-                "label": "CE-02-09",
-                "title": "Discussion Room",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/09/index.json",
-                "description": [
-                    "This room is used to have discussions of projects, activities, etc"
-                ],
-                "features": [
-                    "This has a space for 30 students and White Boards and Study tables"
-                ],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
                 ]
             },
             {
