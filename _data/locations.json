@@ -4,6 +4,35 @@
         "locations": [
             {
                 "floor": "G",
+                "id": "FLOOR",
+                "label": "CE-G-FLOOR",
+                "title": "Ground Floor",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "N/A",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/FLOOR/index.json",
+                "description": [
+                    "Welcome to Computer Engineering Department UoP"
+                ],
+                "features": [],
+                "tags": [
+                    "Public"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
+            },
+            {
+                "floor": "G",
                 "id": "01",
                 "label": "CE-G-01",
                 "title": "Department Office",
@@ -37,6 +66,8 @@
                 "contact": {
                     "tele": "081-2393470",
                     "email": "headce@eng.pdn.ac.lk",
+                    "tele": "081-2393470",
+                    "email": "headce@eng.pdn.ac.lk",
                     "name": "",
                     "link": ""
                 },
@@ -45,7 +76,10 @@
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/02/index.json",
                 "description": [],
                 "features": [],
-                "tags": [],
+                "tags": [
+                    "Private",
+                    "Staff"
+                ],
                 "accessibility": [
                     "Instructors",
                     "Postgraduates",
@@ -357,9 +391,9 @@
             },
             {
                 "floor": "G",
-                "id": "18",
-                "label": "CE-G-18",
-                "title": "Entrance Lobby",
+                "id": "OUTSIDE",
+                "label": "CE-G-OUTSIDE",
+                "title": "Garden",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -368,13 +402,11 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/18/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/OUTSIDE/index.json",
                 "description": [
-                    "This is the entrance area"
+                    "This is the outside area of the Dept"
                 ],
-                "features": [
-                    "Seating arrangements are in this entrance area"
-                ],
+                "features": [],
                 "tags": [
                     "Public"
                 ],
@@ -402,35 +434,6 @@
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/CR01/index.json",
                 "description": [
                     "This corridor connects central lobby, department office,conference room, and operator room"
-                ],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
-            },
-            {
-                "floor": "G",
-                "id": "FLOOR",
-                "label": "CE-G-FLOOR",
-                "title": "Ground Floor",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/FLOOR/index.json",
-                "description": [
-                    "Welcome to Computer Engineering Department UoP"
                 ],
                 "features": [],
                 "tags": [
@@ -494,9 +497,9 @@
             },
             {
                 "floor": "G",
-                "id": "OUTSIDE",
-                "label": "CE-G-OUTSIDE",
-                "title": "Garden",
+                "id": "18",
+                "label": "CE-G-18",
+                "title": "Entrance Lobby",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -505,11 +508,13 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/OUTSIDE/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/18/index.json",
                 "description": [
-                    "This is the outside area of the Dept"
+                    "This is the entrance area"
                 ],
-                "features": [],
+                "features": [
+                    "Seating arrangements are in this entrance area"
+                ],
                 "tags": [
                     "Public"
                 ],
@@ -528,24 +533,22 @@
         "locations": [
             {
                 "floor": "01",
-                "id": "00",
-                "label": "CE-01-00",
-                "title": "Computer Laboratory 2",
+                "id": "FLOOR",
+                "label": "CE-01-FLOOR",
+                "title": "First Floor",
                 "contact": {
                     "tele": "",
                     "email": "",
                     "name": "",
                     "link": ""
                 },
-                "capacity": "64",
+                "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/00/index.json",
-                "description": [
-                    "This lab contains 2 built in projectors and screens and 64 computers"
-                ],
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/FLOOR/index.json",
+                "description": [],
                 "features": [],
                 "tags": [
-                    "Lab"
+                    "Public"
                 ],
                 "accessibility": [
                     "Instructors",
@@ -614,9 +617,9 @@
                 "title": "Lecturer's Room 1",
                 "contact": {
                     "tele": "",
-                    "email": "roshanr@eng.pdn.ac.lk",
-                    "name": "Prof. Roshan G. Ragel",
-                    "link": "https://people.ce.pdn.ac.lk/staff/academic/roshan-ragel/"
+                    "email": "",
+                    "name": "",
+                    "link": ""
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -637,9 +640,9 @@
                 "title": "Lecturer's Room 2",
                 "contact": {
                     "tele": "",
-                    "email": "swarnar@eng.pdn.ac.lk",
-                    "name": "Dr. Swarnalatha Radhakrishnan",
-                    "link": "https://people.ce.pdn.ac.lk/staff/academic/swarnalatha-radhakrishnan/"
+                    "email": "",
+                    "name": "",
+                    "link": ""
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -660,9 +663,9 @@
                 "title": "Lecturer's Room 3",
                 "contact": {
                     "tele": "",
-                    "email": "sampath@eng.pdn.ac.lk",
-                    "name": "Mr. Sampath Deegalla",
-                    "link": "https://people.ce.pdn.ac.lk/staff/academic/sampath-deegalla/"
+                    "email": "",
+                    "name": "",
+                    "link": ""
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -683,9 +686,9 @@
                 "title": "Lecturer's Room 4",
                 "contact": {
                     "tele": "",
-                    "email": "manjula.sandirigama@eng.pdn.ac.lk",
-                    "name": "Dr. Manjula Sandirigama",
-                    "link": "https://people.ce.pdn.ac.lk/staff/academic/manjula-sandirigama/"
+                    "email": "",
+                    "name": "",
+                    "link": ""
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -834,9 +837,9 @@
             },
             {
                 "floor": "01",
-                "id": "FLOOR",
-                "label": "CE-01-FLOOR",
-                "title": "First Floor",
+                "id": "OP",
+                "label": "CE-01-OP",
+                "title": "Operator Room",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -845,18 +848,14 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/FLOOR/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/OP/index.json",
                 "description": [],
                 "features": [],
                 "tags": [
-                    "Public"
+                    "Authorized"
                 ],
                 "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
+                    "Technical Officers"
                 ]
             },
             {
@@ -886,25 +885,31 @@
             },
             {
                 "floor": "01",
-                "id": "OP",
-                "label": "CE-01-OP",
-                "title": "Operator Room",
+                "id": "00",
+                "label": "CE-01-00",
+                "title": "Computer Laboratory 2",
                 "contact": {
                     "tele": "",
                     "email": "",
                     "name": "",
                     "link": ""
                 },
-                "capacity": "N/A",
+                "capacity": "64",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/OP/index.json",
-                "description": [],
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/00/index.json",
+                "description": [
+                    "This lab contains 2 built in projectors and screens and 64 computers"
+                ],
                 "features": [],
                 "tags": [
-                    "Authorized"
+                    "Lab"
                 ],
                 "accessibility": [
-                    "Technical Officers"
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
                 ]
             }
         ]
@@ -914,26 +919,22 @@
         "locations": [
             {
                 "floor": "02",
-                "id": "00",
-                "label": "CE-02-00",
-                "title": "Hardware & Computer Interfacing Lab",
+                "id": "FLOOR",
+                "label": "CE-02-FLOOR",
+                "title": "Second Floor",
                 "contact": {
                     "tele": "",
                     "email": "",
                     "name": "",
                     "link": ""
                 },
-                "capacity": "60",
+                "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/00/index.json",
-                "description": [
-                    "This lab is used for Digital Design, Embedded Systems and other courses"
-                ],
-                "features": [
-                    "This lab contains 30 Computers, Oscilloscopes, Power Supplies, Signal Generators"
-                ],
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/FLOOR/index.json",
+                "description": [],
+                "features": [],
                 "tags": [
-                    "Lab"
+                    "Public"
                 ],
                 "accessibility": [
                     "Instructors",
@@ -1030,8 +1031,8 @@
             },
             {
                 "floor": "02",
-                "id": "04",
-                "label": "CE-02-04",
+                "id": "09",
+                "label": "CE-02-09",
                 "title": "Discussion Room",
                 "contact": {
                     "tele": "",
@@ -1041,7 +1042,7 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/04/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/09/index.json",
                 "description": [
                     "This room is used to have discussions of projects, activities, etc"
                 ],
@@ -1153,35 +1154,6 @@
             },
             {
                 "floor": "02",
-                "id": "CR01",
-                "label": "CE-02-CR01",
-                "title": "Corridor",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/CR01/index.json",
-                "description": [
-                    "This corridor can be used to reach Discussion room, Hardware & CI lab, TO room, and Main room"
-                ],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
-            },
-            {
-                "floor": "02",
                 "id": "ENTR",
                 "label": "CE-02-ENTR",
                 "title": "Main Room",
@@ -1197,33 +1169,6 @@
                 "description": [
                     "The lift or the staircases to enter other floors can be accessed from here"
                 ],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
-            },
-            {
-                "floor": "02",
-                "id": "FLOOR",
-                "label": "CE-02-FLOOR",
-                "title": "Second Floor",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/FLOOR/index.json",
-                "description": [],
                 "features": [],
                 "tags": [
                     "Public"
@@ -1263,6 +1208,35 @@
             },
             {
                 "floor": "02",
+                "id": "CR01",
+                "label": "CE-02-CR01",
+                "title": "Corridor",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "N/A",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/CR01/index.json",
+                "description": [
+                    "This corridor can be used to reach Discussion room, Hardware & CI lab, TO room, and Main room"
+                ],
+                "features": [],
+                "tags": [
+                    "Public"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
+            },
+            {
+                "floor": "02",
                 "id": "OP",
                 "label": "CE-02-OP",
                 "title": "Operator Room",
@@ -1283,12 +1257,70 @@
                 "accessibility": [
                     "Technical Officers"
                 ]
+            },
+            {
+                "floor": "02",
+                "id": "00",
+                "label": "CE-02-00",
+                "title": "Hardware & Computer Interfacing Lab",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "60",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/00/index.json",
+                "description": [
+                    "This lab is used for Digital Design, Embedded Systems and other courses"
+                ],
+                "features": [
+                    "This lab contains 30 Computers, Oscilloscopes, Power Supplies, Signal Generators"
+                ],
+                "tags": [
+                    "Lab"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
             }
         ]
     },
     "03": {
         "title": "03",
         "locations": [
+            {
+                "floor": "03",
+                "id": "FLOOR",
+                "label": "CE-03-FLOOR",
+                "title": "Third Floor",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "N/A",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/03/FLOOR/index.json",
+                "description": [],
+                "features": [],
+                "tags": [
+                    "Public"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
+            },
             {
                 "floor": "03",
                 "id": "00",
@@ -1628,33 +1660,6 @@
             },
             {
                 "floor": "03",
-                "id": "FLOOR",
-                "label": "CE-03-FLOOR",
-                "title": "Third Floor",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/03/FLOOR/index.json",
-                "description": [],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
-            },
-            {
-                "floor": "03",
                 "id": "LIFT",
                 "label": "CE-03-LIFT",
                 "title": "Lift",
@@ -1708,25 +1713,22 @@
         "locations": [
             {
                 "floor": "04",
-                "id": "00",
-                "label": "CE-04-00",
-                "title": "ESCAL Computer Vision Lab",
+                "id": "FLOOR",
+                "label": "CE-04-FLOOR",
+                "title": "Fourth Floor",
                 "contact": {
                     "tele": "",
                     "email": "",
                     "name": "",
                     "link": ""
                 },
-                "capacity": "4",
+                "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/00/index.json",
-                "description": [
-                    "This is for computer vision related projects will be done in here",
-                    "This is a proposed Lab"
-                ],
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/FLOOR/index.json",
+                "description": [],
                 "features": [],
                 "tags": [
-                    "Lab"
+                    "Public"
                 ],
                 "accessibility": [
                     "Instructors",
@@ -1830,6 +1832,36 @@
             },
             {
                 "floor": "04",
+                "id": "00",
+                "label": "CE-04-00",
+                "title": "ESCAL Computer Vision Lab",
+                "contact": {
+                    "tele": "",
+                    "email": "damayanthiherath@eng.pdn.ac.lk",
+                    "name": "Dr. Damayanthi Herath",
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/damayanthi-herath/"
+                },
+                "capacity": "4",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/00/index.json",
+                "description": [
+                    "This is for computer vision related projects will be done in here",
+                    "This is a proposed Lab"
+                ],
+                "features": [],
+                "tags": [
+                    "Lab"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
+                ]
+            },
+            {
+                "floor": "04",
                 "id": "05",
                 "label": "CE-04-05",
                 "title": "Lecturer's Room 1",
@@ -1873,52 +1905,6 @@
                 "accessibility": [
                     "Staff"
                 ]
-            },
-            {
-                "floor": "04",
-                "id": "07G",
-                "label": "CE-04-07G",
-                "title": "Gents Washroom",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/07G/index.json",
-                "description": [
-                    "This washroom is for the use of Gents"
-                ],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": []
-            },
-            {
-                "floor": "04",
-                "id": "07L",
-                "label": "CE-04-07L",
-                "title": "Ladies Washroom",
-                "contact": {
-                    "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
-                },
-                "capacity": "N/A",
-                "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/07L/index.json",
-                "description": [
-                    "This washroom is for the use of Ladies"
-                ],
-                "features": [],
-                "tags": [
-                    "Public"
-                ],
-                "accessibility": []
             },
             {
                 "floor": "04",
@@ -2075,9 +2061,9 @@
             },
             {
                 "floor": "04",
-                "id": "CR01",
-                "label": "CE-04-CR01",
-                "title": "Corridor 1",
+                "id": "07L",
+                "label": "CE-04-07L",
+                "title": "Ladies Washroom",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -2086,27 +2072,21 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/CR01/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/07L/index.json",
                 "description": [
-                    "This corridor can be used to reach corridor2, instructor room, staircase, computer lab1 and washrooms"
+                    "This washroom is for the use of Ladies"
                 ],
                 "features": [],
                 "tags": [
                     "Public"
                 ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
+                "accessibility": []
             },
             {
                 "floor": "04",
-                "id": "CR02",
-                "label": "CE-04-CR02",
-                "title": "Corridor 2",
+                "id": "07G",
+                "label": "CE-04-07G",
+                "title": "Gents Washroom",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -2115,21 +2095,15 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/CR02/index.json",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/07G/index.json",
                 "description": [
-                    "This corridor can be used to enter to the Computer Vision Lab, main room and operators"
+                    "This washroom is for the use of Gents"
                 ],
                 "features": [],
                 "tags": [
                     "Public"
                 ],
-                "accessibility": [
-                    "Instructors",
-                    "Postgraduates",
-                    "Staff",
-                    "Technical Officers",
-                    "Undergraduates"
-                ]
+                "accessibility": []
             },
             {
                 "floor": "04",
@@ -2164,9 +2138,9 @@
             },
             {
                 "floor": "04",
-                "id": "FLOOR",
-                "label": "CE-04-FLOOR",
-                "title": "Fourth Floor",
+                "id": "CR01",
+                "label": "CE-04-CR01",
+                "title": "Corridor 1",
                 "contact": {
                     "tele": "",
                     "email": "",
@@ -2175,8 +2149,10 @@
                 },
                 "capacity": "N/A",
                 "url": "#",
-                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/FLOOR/index.json",
-                "description": [],
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/CR01/index.json",
+                "description": [
+                    "This corridor can be used to reach corridor2, instructor room, staircase, computer lab1 and washrooms"
+                ],
                 "features": [],
                 "tags": [
                     "Public"
@@ -2235,6 +2211,35 @@
                 ],
                 "accessibility": [
                     "Technical Officers"
+                ]
+            },
+            {
+                "floor": "04",
+                "id": "CR02",
+                "label": "CE-04-CR02",
+                "title": "Corridor 2",
+                "contact": {
+                    "tele": "",
+                    "email": "",
+                    "name": "",
+                    "link": ""
+                },
+                "capacity": "N/A",
+                "url": "#",
+                "api_url": "https://api.ce.pdn.ac.lk/locations/v1/04/CR02/index.json",
+                "description": [
+                    "This corridor can be used to enter to the Computer Vision Lab, main room and operators"
+                ],
+                "features": [],
+                "tags": [
+                    "Public"
+                ],
+                "accessibility": [
+                    "Instructors",
+                    "Postgraduates",
+                    "Staff",
+                    "Technical Officers",
+                    "Undergraduates"
                 ]
             }
         ]

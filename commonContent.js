@@ -54,10 +54,10 @@ function addMouseEvents(cube, buildingID){                                      
                 document.getElementById("main_information").style.height = "75%";
                 document.getElementById("hint").style.height = "7.5%";
                 document.getElementById("controlLayout").style.height = "20%";
-                document.getElementById("more_information").style.removeProperty('min-height');
-                document.getElementById("more_information").style.padding = "0%";
-                document.getElementById("more_information").style.marginTop = "0%";
-                document.getElementById("more_information").style.margin = "0%";
+                // document.getElementById("more_information").style.removeProperty('min-height');
+                // document.getElementById("more_information").style.padding = "0%";
+                // document.getElementById("more_information").style.marginTop = "0%";
+                // document.getElementById("more_information").style.margin = "0%";
                 document.getElementById("label2").style.fontSize = "0vmin";
                 document.getElementById("list2").style.fontSize = "0vmin";
                 for(var i=0;i<idNUM;i++){
@@ -255,7 +255,7 @@ var assets = 0;
 var assetsobjects;
 function ImportAssets(location,xValue,yValue,zValue,xrotatevalue,scale=1){
     if(assets==0){
-        buildingloader.load(location,(gltf) => {
+        buildingloader.load('https://cepdnaclk.github.io/e18-co227-Interactive-Department-Map-GroupA/main/assets/' + location,(gltf) => {
             assetsobjects = gltf.scene;
             assetsobjects.scale.set(scale,scale,scale);                                            //Set the scale of the object
             scene.add(assetsobjects);                                                  //Add to the scene
@@ -838,9 +838,9 @@ async function switchtoSKY(){
     }
     ViewMode = "sky";
     transition = 0;
-    if(initNo!=-1){         //This will show the path if there is a hash segment in the URL
-        showPath(initNo);
-        initNo = -1;
+    if(initLabel){         //This will show the path if there is a hash segment in the URL
+        showPath_byLabel(initLabel);
+        initLabel = null;
     }
 }
 
@@ -913,43 +913,43 @@ function changeCorners(){   //Change the shape of the corners of the layouts
     }
 }
 
-document.getElementById("searchQueryInput").addEventListener('input',function(evt){     //When the input changes
-    var currentInput = document.getElementById("searchQueryInput").value;       //Take the text in the input field
-    if(currentInput==""){
-        document.getElementById("searchQuerydelete").style.display = "none";        //Hide the input remover button
-        document.getElementById("searchQuerySubmit").style.marginLeft = "-15.1%";       //Set the alignment of submit button
-    }else{
-        document.getElementById("searchQuerydelete").style.display = "flex";        //Show the input remover button
-        document.getElementById("searchQuerySubmit").style.marginLeft = "-0.5%";       //Set the alignment of submit button
-    }
-    document.getElementById("roomList").scrollTo(0, 0);                         //Scroll to top
-    for(var i=0;i<buildingIDList.length;i++){                       //Sort the buildingID List according to the text
-        for(var j=i+1;j<buildingIDList.length;j++){ 
-            if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
-                if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())!=-1){
-                    var wordHolder = buildingIDList[i];
-                    buildingIDList[i] = buildingIDList[j];
-                    buildingIDList[j] = wordHolder;
-                }
-            }else if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
-            }else if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())>buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())){
-                var wordHolder = buildingIDList[i];
-                buildingIDList[i] = buildingIDList[j];
-                buildingIDList[j] = wordHolder;
-            }
-        }
-    }
-    for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
-            document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];    
-    }
-    if(itemSelected){
-        for(var i=0;i<navigatingItemList.length;i++){       //Highlight the earlier highlighed item
-            document.getElementById(navigatingItemList[i]).style.color = buildingIDList[i][1] ==lastID?"#000000":"#BBBBBB";    
-        }
-    }
-});
+// document.getElementById("searchQueryInput").addEventListener('input',function(evt){     //When the input changes
+//     var currentInput = document.getElementById("searchQueryInput").value;       //Take the text in the input field
+//     if(currentInput==""){
+//         document.getElementById("searchQuerydelete").style.display = "none";        //Hide the input remover button
+//         document.getElementById("searchQuerySubmit").style.marginLeft = "-15.1%";       //Set the alignment of submit button
+//     }else{
+//         document.getElementById("searchQuerydelete").style.display = "flex";        //Show the input remover button
+//         document.getElementById("searchQuerySubmit").style.marginLeft = "-0.5%";       //Set the alignment of submit button
+//     }
+//     document.getElementById("roomList").scrollTo(0, 0);                         //Scroll to top
+//     for(var i=0;i<buildingIDList.length;i++){                       //Sort the buildingID List according to the text
+//         for(var j=i+1;j<buildingIDList.length;j++){ 
+//             if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
+//                 if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())!=-1){
+//                     var wordHolder = buildingIDList[i];
+//                     buildingIDList[i] = buildingIDList[j];
+//                     buildingIDList[j] = wordHolder;
+//                 }
+//             }else if(buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())==-1){
+//             }else if(buildingIDList[i][0].toLowerCase().indexOf(currentInput.toLowerCase())>buildingIDList[j][0].toLowerCase().indexOf(currentInput.toLowerCase())){
+//                 var wordHolder = buildingIDList[i];
+//                 buildingIDList[i] = buildingIDList[j];
+//                 buildingIDList[j] = wordHolder;
+//             }
+//         }
+//     }
+//     for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
+//             document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];    
+//     }
+//     if(itemSelected){
+//         for(var i=0;i<navigatingItemList.length;i++){       //Highlight the earlier highlighed item
+//             document.getElementById(navigatingItemList[i]).style.color = buildingIDList[i][1] ==lastID?"#000000":"#BBBBBB";    
+//         }
+//     }
+// });
     
-var lastID = -5;        //BuldingID of the last showPath function call
+var lastID = null;        //BuldingID of the last showPath function call
 var itemSelected = 0;   //Used to flag whether item has been selected or not
 async function showPath(buildingID){
     if(itemSelected){   //If item has been selected
@@ -978,135 +978,198 @@ async function showPath(buildingID){
             transparentMaterialForPanelsArray[i].opacity = 0;
         }
         transparentMaterialForPanelsArray[buildingIDList[buildingID][1]].opacity = 0.4;
-        roomInfo(buildingIDList[buildingID][1]);
+        roomInfo_byLabel(buildingIDList[buildingID][1]);
         lastID = buildingIDList[buildingID][1];        //Set the LastID
         itemSelected = !itemSelected;
     }else{
-        initNo = buildingID;
+        initLabel = buildingID;
         switchtoSKY();
     }
     // itemSelected = !itemSelected;   //Change the flag
 }
 
-function findData(){    //This function gives the search results of navigating panel
-    if(itemSelected){showPath(5);}              //pickout the paths
-    var newBuildingIDList = [];
-    var currentWord = document.getElementById("searchQueryInput").value.toLowerCase();
-    for(var i=0;i<currentWord.length;i++){      //Here all the substrings in gvien word will be searched (exx:-  for 'abc' -> abc, ab, bc, a, b ,c)
-        for(var k=0;k<i+1;k++){
-            currentInput = currentWord.substr(k,currentWord.length-i);
-            for(var j=0;j<buildingIDList.length;){               
-                if(my_json[buildingIDList[j][1]].label!="" && my_json[buildingIDList[j][1]].label.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].label.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].title!="" && my_json[buildingIDList[j][1]].title.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].title.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.tele!="" && my_json[buildingIDList[j][1]].contact.tele.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.tele.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.email!="" && my_json[buildingIDList[j][1]].contact.email.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.email.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.name!="" && my_json[buildingIDList[j][1]].contact.name.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.name.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].contact.link!="" && my_json[buildingIDList[j][1]].contact.link.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.link.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].capacity.toString()!="N/A" && my_json[buildingIDList[j][1]].capacity.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].capacity.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].url.toString()!="#" && my_json[buildingIDList[j][1]].url.toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    buildingIDList[j][3] = my_json[buildingIDList[j][1]].url.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                    newBuildingIDList.push(buildingIDList[j]);
-                    buildingIDList.splice(j,1);
-                    j=j-1;
-                }else if(my_json[buildingIDList[j][1]].description.length!=0 && my_json[buildingIDList[j][1]].description.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].description.length;k++){
-                        if(my_json[buildingIDList[j][1]].description[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].description[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].features.length!=0 && my_json[buildingIDList[j][1]].features.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].features.length;k++){
-                        if(my_json[buildingIDList[j][1]].features[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].features[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].tags.length!=0 && my_json[buildingIDList[j][1]].tags.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].tags.length;k++){
-                        if(my_json[buildingIDList[j][1]].tags[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].tags[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }else if(my_json[buildingIDList[j][1]].accessibility.length!=0 && my_json[buildingIDList[j][1]].accessibility.toString().toLowerCase().includes(currentInput)){
-                    var regx = new RegExp(currentInput,'gi');
-                    for(var k=0;k<my_json[buildingIDList[j][1]].accessibility.length;k++){
-                        if(my_json[buildingIDList[j][1]].accessibility[k].toLowerCase().includes(currentInput)){
-                            buildingIDList[j][3] = my_json[buildingIDList[j][1]].accessibility[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
-                            newBuildingIDList.push(buildingIDList[j]);
-                            buildingIDList.splice(j,1);
-                            j=j-1;
-                            break;
-                        }
-                    }
-                }
-                j=j+1;    
+async function showPath_byLabel(buildingLabel){
+    const selectedLocation = buildingID_data[buildingLabel];
+
+    console.log(buildingLabel);
+
+    // TODO: Fix dubble selection bug 
+
+    if (selectedLocation){
+        if(itemSelected){   //If item has been selected
+
+            //Set colours of the items to default  
+            const navItems = document.getElementsByClassName("navigate_item");
+            for(var i=0;i<navItems.length;i++){
+                navItems[i].style.color = "#616160"   
             }
+
+            // Dissapear the showed path
+            for(var i=0;i<NavigatingMaterialArray.length;i++){         
+                NavigatingMaterialArray[i].opacity = 0;
+            }
+            if(ViewMode=="sky" || ViewMode=="drone"){
+                // Set opacity of all the panels to 0
+                for(var i=0;i<idNUM;i++){                                           
+                    transparentMaterialForPanelsArray[i].opacity = 0;
+                }
+            }
+            itemSelected = false;// !itemSelected;
         }
-    }
-    for(var i=0;i<buildingIDList.length;i++){       //Update the navigating Item list according to the new buildingID list
-        buildingIDList[i][3] = "<not style='color:#CBAAAA'>not found</not>";    
-    }
-    buildingIDList = newBuildingIDList.concat(buildingIDList);
-    for(var i=0;i<navigatingItemList.length;i++){       //Update the navigating Item list according to the new buildingID list
-        document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0] + "<div class='hel'>"+buildingIDList[i][3]+"</div>";
+        
+        if(ViewMode!="sky"){
+            initLabel = buildingLabel;
+            await switchtoSKY();
+        }
+
+        if(lastID != selectedLocation.id && itemSelected==false){
+            
+            // Highlight the selected item    
+            document.getElementById("navigatingItem_" + buildingLabel).style.color = "#000000";
+
+            // Show thw path (using bars)
+            for(var i=0;i<selectedLocation.path.length;i++){
+                NavigatingMaterialArray[selectedLocation.path[i]].opacity = 1;   
+            }
+
+            // Set opacity of all the panels
+            for(var i=0;i<idNUM;i++){                                           
+                transparentMaterialForPanelsArray[i].opacity = i==selectedLocation.id ? 0.4 : 0;
+            }
+            roomInfo_label(buildingLabel);
+
+            lastID = selectedLocation.id; 
+            itemSelected = true;
+        }
     }
 }
 
+// TODO: Implement the search with Dictionary 
+
+// function findData(){    //This function gives the search results of navigating panel
+//     if(itemSelected){showPath(5);}              //pickout the paths TODO: Update
+//     var newBuildingIDList = [];
+//     var currentWord = document.getElementById("searchQueryInput").value.toLowerCase();
+//     for(var i=0;i<currentWord.length;i++){      //Here all the substrings in gvien word will be searched (exx:-  for 'abc' -> abc, ab, bc, a, b ,c)
+//         for(var k=0;k<i+1;k++){
+//             currentInput = currentWord.substr(k,currentWord.length-i);
+//             for(var j=0;j<buildingIDList.length;){               
+//                 if(my_json[buildingIDList[j][1]].label!="" && my_json[buildingIDList[j][1]].label.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].label.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].title!="" && my_json[buildingIDList[j][1]].title.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].title.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.tele!="" && my_json[buildingIDList[j][1]].contact.tele.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.tele.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.email!="" && my_json[buildingIDList[j][1]].contact.email.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.email.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.name!="" && my_json[buildingIDList[j][1]].contact.name.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.name.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].contact.link!="" && my_json[buildingIDList[j][1]].contact.link.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].contact.link.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].capacity.toString()!="N/A" && my_json[buildingIDList[j][1]].capacity.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].capacity.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].url.toString()!="#" && my_json[buildingIDList[j][1]].url.toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     buildingIDList[j][3] = my_json[buildingIDList[j][1]].url.replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                     newBuildingIDList.push(buildingIDList[j]);
+//                     buildingIDList.splice(j,1);
+//                     j=j-1;
+//                 }else if(my_json[buildingIDList[j][1]].description.length!=0 && my_json[buildingIDList[j][1]].description.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].description.length;k++){
+//                         if(my_json[buildingIDList[j][1]].description[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].description[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].features.length!=0 && my_json[buildingIDList[j][1]].features.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].features.length;k++){
+//                         if(my_json[buildingIDList[j][1]].features[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].features[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].tags.length!=0 && my_json[buildingIDList[j][1]].tags.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].tags.length;k++){
+//                         if(my_json[buildingIDList[j][1]].tags[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].tags[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }else if(my_json[buildingIDList[j][1]].accessibility.length!=0 && my_json[buildingIDList[j][1]].accessibility.toString().toLowerCase().includes(currentInput)){
+//                     var regx = new RegExp(currentInput,'gi');
+//                     for(var k=0;k<my_json[buildingIDList[j][1]].accessibility.length;k++){
+//                         if(my_json[buildingIDList[j][1]].accessibility[k].toLowerCase().includes(currentInput)){
+//                             buildingIDList[j][3] = my_json[buildingIDList[j][1]].accessibility[k].replace(regx,"<highlighted style='color:black;'>"+currentInput+"</highlighted>");
+//                             newBuildingIDList.push(buildingIDList[j]);
+//                             buildingIDList.splice(j,1);
+//                             j=j-1;
+//                             break;
+//                         }
+//                     }
+//                 }
+//                 j=j+1;    
+//             }
+//         }
+//     }
+//     for(var i=0;i<buildingIDList.length;i++){       //Update the navigating Item list according to the new buildingID list
+//         buildingIDList[i][3] = "<not style='color:#CBAAAA'>not found</not>";    
+//     }
+//     buildingIDList = newBuildingIDList.concat(buildingIDList);
+
+//     //Update the navigating Item list according to the new buildingID list
+//     for(var i=0;i<navigatingItemList.length;i++){       
+//         const resData = buildingIDList.filter((item) => {return item[4] == navigatingItemList[i].split("_")[1] })[0];
+//         if (resData){
+//             document.getElementById(navigatingItemList[i]).innerHTML = resData[0] + "<div class='hel'>"+resData[3]+"</div>";
+//         }
+//     }
+// }
+
 function deleteInput(){
-    document.getElementById("searchQueryInput").value = "";
-    var event = document.createEvent('Event');
-    event.initEvent('input', true, true);
-    document.getElementById("searchQueryInput").dispatchEvent(event);
+    // document.getElementById("searchQueryInput").value = "";
+    // var event = document.createEvent('Event');
+    // event.initEvent('input', true, true);
+    // document.getElementById("searchQueryInput").dispatchEvent(event);
 }
 
 function showDetails(){         //This function shows the pop up window (contact details of the developers)
@@ -1132,7 +1195,7 @@ function hideGuide(){         //This function hides the pop up window (informati
 
 
 //Redirecting to other pages
-function redirecttoPage(pageID){
+function redirectToPage(pageID){
     switch(pageID){
         case 0:
             window.open("FloorG.html","_self");
@@ -1153,7 +1216,7 @@ function redirecttoPage(pageID){
 }
 
 //Redirecting to developers' department web site pages
-function redirecttoAccount(pageID){
+function redirectToAccount(pageID){
     switch(pageID){
         case 1:
             window.open("https://people.ce.pdn.ac.lk/students/e15/140/");
@@ -1172,43 +1235,43 @@ function redirecttoAccount(pageID){
 
 //Key Controls
 document.onkeydown = function(event){   //Set event listeners for key presses
-    if(document.getElementById("searchQueryInput")!=document.activeElement && (!transition)){    //If input field hasn't been focused
-        switch (event.keyCode){
-            case 37:    //arrow left
-                turnleft();
-                break;
-            case 38:    //Aroow up
-                forward();
-                break;
-            case 39:    //Arrow right
-                turnright();
-                break;
-            case 40:    //Arrow down
-                backward();
-                break;
-            case 83:    //Letter s
-                turnup();
-                break;
-            case 65:    //Letter a
-                turndown();
-                break;
-            case 87:    //Letter w
-                if(ViewMode=="sky" || ViewMode=="drone"){
-                    switchtoWALK();
-                }
-                break;
-            case 68:    //Letter d
-                if(ViewMode=="sky" || ViewMode=="walk"){
-                    switchtoDRONE();
-                }
-                break;
-            case 66:    //Letter b
-                if(ViewMode=="drone" || ViewMode=="walk"){
-                    switchtoSKY();
-                }
-                break;
-        }
-    }
+    // if(document.getElementById("searchQueryInput")!=document.activeElement && (!transition)){    //If input field hasn't been focused
+    //     switch (event.keyCode){
+    //         case 37:    //arrow left
+    //             turnleft();
+    //             break;
+    //         case 38:    //Aroow up
+    //             forward();
+    //             break;
+    //         case 39:    //Arrow right
+    //             turnright();
+    //             break;
+    //         case 40:    //Arrow down
+    //             backward();
+    //             break;
+    //         case 83:    //Letter s
+    //             turnup();
+    //             break;
+    //         case 65:    //Letter a
+    //             turndown();
+    //             break;
+    //         case 87:    //Letter w
+    //             if(ViewMode=="sky" || ViewMode=="drone"){
+    //                 switchtoWALK();
+    //             }
+    //             break;
+    //         case 68:    //Letter d
+    //             if(ViewMode=="sky" || ViewMode=="walk"){
+    //                 switchtoDRONE();
+    //             }
+    //             break;
+    //         case 66:    //Letter b
+    //             if(ViewMode=="drone" || ViewMode=="walk"){
+    //                 switchtoSKY();
+    //             }
+    //             break;
+    //     }
+    // }
 }
 
 buttoncontrolsarray = ["left","right","up","down","front","back"];
@@ -1267,21 +1330,22 @@ function buttonControls(buttonID){
     }
 }
 
-var initNo = -1;
+var initLabel = null;
 
 async function checkURL(){  //If there is a hash segment in the URL, this functon will switch camera to bird mode and show the particular room 
-    urlHash = location.hash.substring(1);   //Take the hash segment
+    urlHash = location.hash.substring(1).trim();   //Take the hash segment
+    console.log("#", urlHash);
+
     if(urlHash!=""){                        //Checking whether it is empty
-        for(var i=0;i<buildingIDList.length;i++){   //Match with room id s
-            if(my_json[buildingIDList[i][1]].id==urlHash){      //If there is a matching id,
-                switchtoSKY();      //Switch to bird mode
-                initNo = i;         //Flag to switchtoSKY function that path to the room should be shown
-                return 0;           //Stop looping
-            }
+        console.log("URL Hash detected", urlHash);
+        const res = await buildingID_data[urlHash];
+    
+        if(res){
+            initLabel = urlHash
+            switchtoSKY();
         }
     }
 }
-
 
 //Front cube
 var frontCameraBall = new THREE.Mesh(
@@ -1323,20 +1387,23 @@ topballBB.setFromObject(topCameraBall);
 
 
 function checkfrontIntersection(){      //Checking whether front ball is intersecting with any wall
-    var sum=0;
-    for(var i=0;i<transparentWallsList.length;i++){
-        if(frontballBB.intersectsBox(transparentWallsList[i])){
-            return 1;
-        } 
+    if(transparentWallsList){
+        for(var i=0;i<transparentWallsList.length;i++){
+            if(frontballBB.intersectsBox(transparentWallsList[i])){
+                return 1;
+            } 
+        }
     }
     return 0;
 }
 function checkbackIntersection(){       //Checking whether back ball is intersecting with any wall
-    var sum=0;
-    for(var i=0;i<transparentWallsList.length;i++){
-        if(backballBB.intersectsBox(transparentWallsList[i])){
-            return 1;
-        } 
+    if(transparentWallsList){
+        var sum=0;
+        for(var i=0;i<transparentWallsList.length;i++){
+            if(backballBB.intersectsBox(transparentWallsList[i])){
+                return 1;
+            } 
+        }
     }
     return 0;
 }
@@ -1356,19 +1423,22 @@ function checkCollision(){          //Checking whether front or back ball is int
 
 var lastpanel = -1;         //The id of the last panel top camera ball was intersecting with (default-> -1)
 function checkRoom(){       //This function checks whether top camera ball is intersecting with any panel
-    for(var i=0;i<PanelsList.length;i++){
-        if(topballBB.intersectsBox(PanelsList[i])){
-            if((!clicked) && (i!=lastpanel)){           //If object hasn't been clicked and if top camera ball intersects with a new panel
-                defaultID=idsOfPanelList[i];
-                roomInfo(defaultID);
-                lastpanel = i;
-            }else if((clicked) && (i!=lastpanel)){
-                defaultID=idsOfPanelList[i];
-                lastpanel = i;
-            }        
-            return 0;
+    if(PanelsList){
+        for(var i=0;i<PanelsList.length;i++){
+            if(topballBB.intersectsBox(PanelsList[i])){
+                if((!clicked) && (i!=lastpanel)){           //If object hasn't been clicked and if top camera ball intersects with a new panel
+                    defaultID=idsOfPanelList[i];
+                    roomInfo(defaultID);
+                    lastpanel = i;
+                }else if((clicked) && (i!=lastpanel)){
+                    defaultID=idsOfPanelList[i];
+                    lastpanel = i;
+                }        
+                return 0;
+            }
         }
     }
+
     if(defaultID !=0 && (!clicked)){
         defaultID=0;                
         roomInfo(defaultID);
@@ -1406,62 +1476,70 @@ var animate = function(){
 
 //Update information panel
 function roomInfo(buildingID){
-    document.getElementById("label").innerHTML = my_json[buildingID].title;                           //Update the default information about the department on the top right labels
-                               //Update the default information about the department on the top right labels
-    
-    var list1Content = "";
-    var list2Content = "";
+    if (my_json[buildingID]){
+        roomInfo_label(my_json[buildingID].label)
+    }                  
+}
 
-    
-    for(var i=0;i<my_json[buildingID].description.length;i++){
-        list1Content += ('<li>'+ my_json[buildingID].description[i] +'</li>');     
-    }
-    if(my_json[buildingID].tags.length!=0){
-        list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
-        for(var i=0;i<my_json[buildingID].tags.length;i++){
-            list1Content += ('<div class="tags_class1">'+ my_json[buildingID].tags[i] +'</div>');     
+function roomInfo_label(label){
+    const roomInfo = my_json.filter(item => { return item.label == label })[0]
+    console.log(label, roomInfo);
+
+    if (roomInfo){
+        //Update the default roomInformation about the department on the top right labels
+        document.getElementById("label").innerHTML = roomInfo.title;                           
+        
+        var list1Content = "";
+        for(var i=0;i<roomInfo.description.length;i++){
+            list1Content += ('<li>'+ roomInfo.description[i] +'</li>');     
         }
-        list1Content += '</div>';
-    }
-    if(my_json[buildingID].contact.name!=""){
-        list1Content += ('<li>In charge : '+ my_json[buildingID].contact.name +'</li>');
-    }
-    if(my_json[buildingID].contact.email!=""){
-        list1Content += ('<li>Email : '+ my_json[buildingID].contact.email +'</li>');
-    }
-    document.getElementById("list").innerHTML = list1Content;
-
-
-    if(my_json[buildingID].title!=""){
-        list2Content += ('<li>Location ID : '+ my_json[buildingID].label +'</li>');
-    }
-    for(var i=0;i<my_json[buildingID].features.length;i++){
-        list2Content += ('<li>'+ my_json[buildingID].features[i] +'</li>');     
-    }
-    if(my_json[buildingID].accessibility.length!=0){
-        list2Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
-        for(var i=0;i<my_json[buildingID].accessibility.length;i++){
-            list2Content += ('<div class="tags_class2">'+ my_json[buildingID].accessibility[i] +'</div>');     
+        if(roomInfo.tags.length!=0){
+            list1Content += '<div style="display:flex; flex-wrap: wrap;"><li>Tags : </li>';
+            for(var i=0;i<roomInfo.tags.length;i++){
+                list1Content += ('<div class="tags_class1">'+ roomInfo.tags[i] +'</div>');     
+            }
+            list1Content += '</div>';
         }
-        list2Content += '</div></li>';
-    }
-    if(my_json[buildingID].capacity.toString()!="N/A"){
-        list2Content += ('<li>Capacity : '+ my_json[buildingID].capacity +' students</li>');
-    }
-    if(my_json[buildingID].contact.tele!=""){
-        list2Content += ('<li>Telephone : '+ my_json[buildingID].contact.tele +'</li>');
-    }
-    document.getElementById("list2").innerHTML = list2Content;
+        if(roomInfo.contact.name!=""){
+            list1Content += `<li>In charge : ${roomInfo.contact.name}</li>`;
+        }
+        if(roomInfo.contact.email!=""){
+            list1Content += `<li>Email : ${roomInfo.contact.email}</li>`;
+        }
+        if(roomInfo.contact.tele!=""){
+            list1Content += `<li>Tele : ${roomInfo.contact.tele}</li>`;
+        }
+        if(roomInfo.contact.name!="" && roomInfo.contact.link!=""){
+            list1Content += `<li>Profile : <a href="${roomInfo.contact.link}">${roomInfo.contact.name}</li>`;
+        }
 
-    if(my_json[buildingID].url.toString()!="#"){
-        document.getElementById("url").href = my_json[buildingID].url;
-    }else{
-        document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
-    }
-    if(my_json[buildingID].contact.link!=""){
-        document.getElementById("Personurl").href = my_json[buildingID].contact.link;
-    }else{
-        document.getElementById("Personurl").href = "https://people.ce.pdn.ac.lk/";
-    }
-                          
-   }
+        if(roomInfo.title!=""){
+            list1Content += ('<li>Location ID : '+ roomInfo.label +'</li>');
+        }
+        for(var i=0;i<roomInfo.features.length;i++){
+            list1Content += ('<li>'+ roomInfo.features[i] +'</li>');     
+        }
+        if(roomInfo.accessibility.length!=0){
+            list1Content += '<li>Accessibility : <div style="display:flex; flex-wrap: wrap;">';
+            for(var i=0;i<roomInfo.accessibility.length;i++){
+                list1Content += ('<div class="tags_class2">'+ roomInfo.accessibility[i] +'</div>');     
+            }
+            list1Content += '</div></li>';
+        }
+        if(roomInfo.capacity.toString()!="N/A"){
+            list1Content += ('<li>Capacity : '+ roomInfo.capacity +' students</li>');
+        }
+        if(roomInfo.contact.tele!=""){
+            list1Content += ('<li>Telephone : '+ roomInfo.contact.tele +'</li>');
+        }
+
+        // document.getElementById("list2").innerHTML = list1Content;
+        document.getElementById("list").innerHTML = list1Content;
+
+        if(roomInfo.url.toString()!="#"){
+            document.getElementById("url").href = roomInfo.url;
+        }else{
+            document.getElementById("url").href = "http://www.ce.pdn.ac.lk/";
+        }
+    }                  
+}

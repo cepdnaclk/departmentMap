@@ -1,87 +1,15 @@
 ---
-layout: floor
+layout: floor_3d
 permalink: "/Floor2.html"
 title: "Second Floor"
 parent: "ViewIn3D"
 index: 2
+
+floor_tag: "02"
+assets_file: 'F2_Assets.gltf'
+assets_coordinates: '-5,0,-10,Math.PI,3.28084'
 ---
 
-<div id="glass" class="glass" onmouseover="nowin()" onmouseleave="nowout()"></div>
-<img class="logo" src="images/logo.png">
-<div class="controlLayoutColoured"></div>
-<!--This is an invisible layout which used to sense mouse activities on the label-->
-<div id="information" class="information_class">
-    <div id="main_information" class="main_information_class"> <!--Top right main information label-->
-        <div id="label" class="label1_class">Room Name</div>
-        <ul id="list" class="list_class" style="list-style-image: url(images/bullet2.png); font-size: 2.15vmin;">
-            <!--Top right main information list-->
-            <li>list item 1</li>
-            <li>list item 2</li>
-            <li>list item 3</li>
-        </ul>
-    </div>
-    <div id="hint" class="hint_class">Click on the blue panel for more details</div>
-    <div id="more_information" class="more_information_class"> <!--Top right more information label-->
-        <p2 id="label2" class="label2_class">More information here</p2>
-        <ul id="list2" class="list2_class" style="list-style-image: url(images/bullet2.png);">
-            <!--Top right more information list-->
-            <li>list item 1</li>
-            <li>list item 2</li>
-            <li>list item 3</li>
-        </ul>
-        <div class="line"></div>
-    </div>
-</div>
-
-<div id="latterPanel" class="latterPanelClass">
-    <div id="link" class="link_class">
-        <div id="linkHead" class="linkHead_class">Link</div>
-        <div class="url_class">
-            <a href="http://www.ce.pdn.ac.lk/" id="url" target="_blank" style="width: 50%;">Info</a>
-            <a href="http://www.ce.pdn.ac.lk/" id="Personurl" target="_blank" style="width: 50%;">Person Info</a>
-        </div>
-
-    </div>
-    <div id="navigator" class="navigate_class"> <!--Top right main information label-->
-        <div id="searchBar" class="searchBar">
-            <input id="searchQueryInput" class="searchQueryInput_class" type="text" name="searchQueryInput"
-                placeholder="Search" value="" />
-            <button id="searchQuerydelete" class="searchQuerydelete_class" type="submit" name="searchQuerydelete"
-                onclick="deleteInput()">
-                <svg width="3vmin" height="3vmin" viewBox="0 0 24 24">
-                    <path fill="#1A5276"
-                        d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
-                        fill="currentColor" />
-                </svg>
-            </button>
-            <button id="searchQuerySubmit" class="searchQuerySubmit_class" type="submit" name="searchQuerySubmit"
-                onclick="findData()">
-                <svg style="width:3.4vmin;height:3.4vmin" viewBox="0 0 24 24">
-                    <path fill="#666666"
-                        d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                </svg>
-            </button>
-        </div>
-        <div id="roomListContainer" class="roomListContainer_class">
-            <div id="roomList" class="roomList_class">
-                <div id="navigatingItem1" class="items" onclick="showPath(0)"></div>
-                <div id="navigatingItem2" class="items" onclick="showPath(1)"></div>
-                <div id="navigatingItem3" class="items" onclick="showPath(2)"></div>
-                <div id="navigatingItem4" class="items" onclick="showPath(3)"></div>
-                <div id="navigatingItem5" class="items" onclick="showPath(4)"></div>
-                <div id="navigatingItem6" class="items" onclick="showPath(5)"></div>
-                <div id="navigatingItem7" class="items" onclick="showPath(6)"></div>
-                <div id="navigatingItem8" class="items" onclick="showPath(7)"></div>
-                <div id="navigatingItem9" class="items" onclick="showPath(8)"></div>
-                <div id="navigatingItem10" class="items" onclick="showPath(9)"></div>
-                <div id="navigatingItem11" class="items" onclick="showPath(10)"></div>
-                <div id="navigatingItem12" class="items" onclick="showPath(11)"></div>
-                <div id="navigatingItem13" class="items" onclick="showPath(12)"></div>
-            </div>
-        </div>
-    </div>
-    <div style="font-size: 2.4vmin;" id="label3" class="label3_class">Navigator</div>
-</div>
 <div id="controlLayout" class="controlLayout_class" onmouseover="showInformation()" onmouseout="hideInformation()">
 </div> <!--This is an invisible layout which used to sense mouse activities on the label-->
 <div id="dashboard" class="dashboard_class">
@@ -137,16 +65,16 @@ index: 2
         </svg>
     </button>
     <button title="Load/Remove assets" id="assets" class="assets_class"
-        onclick="ImportAssets('https\:\/\/raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/assets/F2_Assets.gltf',-5,0,-10,Math.PI,3.28084)">ASSETS</button>
+        onclick="ImportAssets('{{ page.assets_file }}', {{ page.assets_coordinates }})">ASSETS</button>
     <div id="otherpages" class="otherpages_class">
         <div
             style="font-size: 1.2vmin; color:white; padding-left: 0.8vmin; padding-right: 0; width: 17%; margin-top: 1.2vmin;">
             FLOOR</div>
-        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirecttoPage(0)">G</button>
-        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirecttoPage(1)">1</button>
+        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirectToPage(0)">G</button>
+        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirectToPage(1)">1</button>
         <button id="page" class="pagebutton_class">2</button>
-        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirecttoPage(3)">3</button>
-        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirecttoPage(4)">4</button>
+        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirectToPage(3)">3</button>
+        <button id="page" class="pagebutton_class" style="border: none;" onclick="redirectToPage(4)">4</button>
     </div>
     <div class="viewsButtonClass" id="viewsButton">
         <button class="leftTopButtonClass" id="leftTopButton" onclick="leftTop()">BIRD</button>
@@ -177,7 +105,7 @@ index: 2
                 fill="currentColor" />
         </svg>
     </div>
-    <div id="name1" class="name1_class" style="display: flex;" onclick="redirecttoAccount(1)"><svg width="6vmin"
+    <div id="name1" class="name1_class" style="display: flex;" onclick="redirectToAccount(1)"><svg width="6vmin"
             height="5.5vmin" viewBox="3 3 20 20">
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
@@ -188,7 +116,7 @@ index: 2
             <div class="mail">nuwanjaliyagoda@eng.pdn.ac.lk</div>
         </div>
     </div>
-    <div id="name1" class="name2_class" style="display: flex;" onclick="redirecttoAccount(2)"><svg width="6vmin"
+    <div id="name1" class="name2_class" style="display: flex;" onclick="redirectToAccount(2)"><svg width="6vmin"
             height="5.5vmin" viewBox="3 3 20 20">
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
@@ -199,7 +127,7 @@ index: 2
             <div class="mail">e18318@eng.pdn.ac.lk</div>
         </div>
     </div>
-    <div id="name1" class="name3_class" style="display: flex;" onclick="redirecttoAccount(3)"><svg width="6vmin"
+    <div id="name1" class="name3_class" style="display: flex;" onclick="redirectToAccount(3)"><svg width="6vmin"
             height="5.5vmin" viewBox="3 3 20 20">
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
@@ -210,7 +138,7 @@ index: 2
             <div class="mail">e18327@eng.pdn.ac.lk</div>
         </div>
     </div>
-    <div id="name1" class="name4_class" style="display: flex;" onclick="redirecttoAccount(4)"><svg width="6vmin"
+    <div id="name1" class="name4_class" style="display: flex;" onclick="redirectToAccount(4)"><svg width="6vmin"
             height="5.5vmin" viewBox="3 3 20 20">
             <path fill-rule="evenodd" clip-rule="evenodd"
                 d="M3.00977 5.83789C3.00977 5.28561 3.45748 4.83789 4.00977 4.83789H20C20.5523 4.83789 21 5.28561 21 5.83789V17.1621C21 18.2667 20.1046 19.1621 19 19.1621H5C3.89543 19.1621 3 18.2667 3 17.1621V6.16211C3 6.11449 3.00333 6.06765 3.00977 6.0218V5.83789ZM5 8.06165V17.1621H19V8.06199L14.1215 12.9405C12.9499 14.1121 11.0504 14.1121 9.87885 12.9405L5 8.06165ZM6.57232 6.80554H17.428L12.7073 11.5263C12.3168 11.9168 11.6836 11.9168 11.2931 11.5263L6.57232 6.80554Z"
@@ -226,40 +154,40 @@ index: 2
     //Database
     //This database is used to load the information about the buildings
     var my_json = {};
-    var numberofRooms = 13;
-    //List of navigating items in the navigating panel
-    let navigatingItemList = [];
-    //Navigating bars, ids and the names of the rooms
-    var buildingIDList = [["", 1, [1, 2, 3, 4, 18, 6, 8]], ["", 2, [1, 2, 3, 9]], ["", 3, [1, 2, 3, 9, 10]], ["", 4, [1, 2, 3, 11]], ["", 5, [1, 2, 3, 11, 12]], ["", 6, [1, 2, 3, 11, 13, 14]], ["", 7, [1, 2, 3, 11, 13, 15, 16]], ["", 8, [1, 2, 3, 11, 13, 15, 17]], ["", 9, [1]], ["", 10, [1, 0]], ["", 11, [1, 2, 3, 4]], ["", 12, [1, 2, 3, 4, 18, 6, 7]], ["", 13, [1, 2, 3, 4, 18, 5]]];
 
+    var buildingID_data = {
+        "CE-02-01": { id: 1, path: [1, 2, 3, 4, 18, 6, 8] },
+        "CE-02-02": { id: 2, path: [1, 2, 3, 9] },
+        "CE-02-03": { id: 3, path: [1, 2, 3, 9, 10] },
+        "CE-02-04": { id: 4, path: [1, 2, 3, 11] },
+        "CE-02-05": { id: 5, path: [1, 2, 3, 11, 12] },
+        "CE-02-06": { id: 6, path: [1, 2, 3, 11, 13, 14] },
+        "CE-02-07": { id: 7, path: [1, 2, 3, 11, 13, 15, 16] },
+        "CE-02-08": { id: 8, path: [1, 2, 3, 11, 13, 15, 17] },
+        "CE-02-ENTR": { id: 9, path: [1] },
+        "CE-02-LIFT": { id: 10, path: [1, 0] },
+        "CE-02-CR01": { id: 11, path: [1, 2, 3, 4] },
+        "CE-02-OP": { id: 12, path: [1, 2, 3, 4, 18, 6, 7] },
+        "CE-02-00": { id: 13, path: [1, 2, 3, 4, 18, 5] },
+    };
     loadBuildings();
 
     function loadBuildings() {
 
         var xhr = new XMLHttpRequest();		//create XHR object
-        xhr.open('GET', 'https://api.ce.pdn.ac.lk/locations/v1/02/index.json', true);
+        xhr.open('GET', '{{ site.baseurl }}/data/{{ page.floor_tag }}.json', true);
 
         xhr.onload = async function () {
             if (this.status == 200) {
-                my_json = await JSON.parse(this.responseText).locations;   //added wrapper such that values of the objects can be accessed
-                //console.log(my_json);		
-                roomInfo(defaultID);       			//Set initial information should be appeared in the panels
-                // var blenderBuilding = importObject('./floors/Floor2.gltf',-5,0,-10,Math.PI,3.28084);
-                var blenderBuilding = await importObject('https://raw.githubusercontent.com/cepdnaclk/e18-co227-Interactive-Department-Map-GroupA/main/floors/Floor2.gltf', -5, 0, -10, Math.PI, 3.28084);
+                //added wrapper such that values of the objects can be accessed
+                my_json = await JSON.parse(this.responseText).locations;
+                var blenderBuilding = await importObject('{{ "/floors/Floor2.gltf" | relative_url }}', -5, 0, -10, Math.PI, 3.28084);
+
+                roomInfo(defaultID);
                 animate();
                 checkURL();
 
-                for (var i = 0; i < numberofRooms; i++) {
-                    navigatingItemList[i] = "navigatingItem" + (i + 1).toString();
-                    buildingIDList[i][0] = my_json[i + 1].title;
-                }
-                //Setting the initial names of the navigating panel list items
-                for (var i = 0; i < numberofRooms; i++) {
-                    document.getElementById(navigatingItemList[i]).innerHTML = buildingIDList[i][0];
-                }
-
-            }
-            else {
+            } else {
                 alert("File not found..!! Check the database file name or URL and try again !! ");	//when there's an error in accessing the json file
             }
         }
@@ -268,7 +196,6 @@ index: 2
         }
         xhr.send();
     }
-
 
     var clicked = 0;                //To check whether a building has been clicked or not
     var expanding = 0;              //To check if top right labels are expanding or not
@@ -287,12 +214,12 @@ index: 2
     var defaultID = 9;    //This is the id of the default information should be shown
     var activebuttons = 0;      //This indicates whether button controls are active or not
 
-
 </script>
 <script src="commonContent.js"></script>
 <script type="text/javascript">
-
-    //Importing the blender object using the created function above
+    var PanelsList = [];
+    var idsOfPanelList = [];
+    var transparentWallsList = [];
 
     //Creating transparent doors using the created function above
     var S01_door1 = createTransparentObject(1, "h", -8.45, -68.41); //a
@@ -334,9 +261,6 @@ index: 2
 
     var S13_door1 = createTransparentObject(13, "vs", -10.35, -64.25); //k
 
-    //Creating transparent panels using the created function above
-    var PanelsList = [];
-    var idsOfPanelList = [];
 
     var panel01_1BB = createTransparentPanel(1, 10.35, 11.15, -5.175, -74.425); PanelsList.push(panel01_1BB);
 
@@ -366,8 +290,6 @@ index: 2
     var panel13_1BB = createTransparentPanel(13, 20.6, 21.4, -20.7, -69.3); PanelsList.push(panel13_1BB);
     var panel13_2BB = createTransparentPanel(13, 20, 1.35, -21, -57.925); PanelsList.push(panel13_2BB);
 
-    //Creating transparent walls using the created function above
-    var transparentWallsList = [];
 
     var cubeV1BB = createWall(Y, 70, 0.3, -45); transparentWallsList.push(cubeV1BB);
     var cubeV2BB = createWall(Y, 70, -31.3, -45); transparentWallsList.push(cubeV2BB);
@@ -456,122 +378,4 @@ index: 2
 
     const lightt = new THREE.AmbientLight(0x404040); // soft white light
     scene.add(lightt);
-
 </script>
-<div id="guider" class="guider_class">
-    <div id="g_header" class="g_header_class">
-        <div style="padding-left: 1vmin; padding-top: 1.5vmin; padding-bottom: 1.5vmin;"><strong>Hey there!! Welcome to
-                the Department of Computer Engineering!</strong></div>
-        <div id="Guide_close" class="Guide_close_class" name="Guide_close" color="#28B463" onclick="hideGuide()">
-            <svg width="24" height="24" viewBox="0 0 24 24">
-                <path fill="#ffffff"
-                    d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
-                    fill="currentColor" />
-            </svg>
-        </div>
-    </div>
-    <div id="help" class="help_class">
-        <div class="g_1">
-            <div style="font-size: 2.7vmin; padding-bottom: 3vmin; "><strong>Let's get started !!</strong></div>
-            <div>At the very beginning, now you're at the entrance of the ground floor in walking mode.<br>
-                You can see a red dot in the centre of the screen. It will assist you to find the exact
-                direction you're moving. Use it as a walking directory.<br><br>
-                You can see the information panel on your right side. It has Main 3 parts namely;</div>
-            <div style="display: flex;">
-                <ul class="g_list">
-                    <li>Main info panel</li>
-                    <li>Navigation panel</li>
-                    <li>Dashboard</li>
-                </ul>
-                <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;" src="images/walking_view.png">
-                <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;" src="images/drone_view.png">
-                <img style=" height: 11vmin; padding-top: 2vmin; padding-left: 2vmin;" src="images/bird_view.png">
-            </div>
-            <div>Let’s see how it changes with respect to the different 3 modes; walk, drone & bird.</div><br>
-        </div>
-        <div class="g_2">
-            <div><strong>Walk mode</strong></div>
-            <ul class="g_list">
-                <li>This is the default view mode and if you want to switch to walk mode use walk button at bottom right
-                    or press W key in keyboard</li>
-                <li>Use Arrow keys to move →right, ←left, ↑ front and ↓back</li>
-                <li>Use the keys A to turn up, S to turn down.</li>
-                <li>You can enter rooms only through the doors, not through walls and you will see
-                    the information panel always display the information about the room you’re
-                    currently staying.</li>
-                <li>You can hover the mouse on to a door to see information about the rooms that are next to that doors
-                </li>
-            </ul>
-        </div>
-        <div class="g_3">
-            <div><strong>Drone mode and Bird mode</strong></div>
-            <ul class="g_list">
-                <li>Click on the Drone/Bird button on the bottom right corner or simply press key D/B</li>
-                <li>Move the scene like in the walk mode (use arrow keys, S and A keys )</li>
-                <li>Now to see information about a particular room you have to hover the mouse on
-                    to the relevant panels over rooms</li>
-            </ul>
-        </div>
-        <div class="g_4">
-            <div><strong>Want to get more information about your room?</strong></div>
-            <ul class="g_list">
-                <li>Click on the wall or a door or a panel and the information panel will be locked and will be expanded
-                    once you hover on to the information panel.</li>
-                <li>If you want to unlock the information panel simply click on the door or wall or panel again.</li>
-            </ul>
-        </div>
-        <div class="g_5">
-            <div><strong>Navigating panel</strong></div><br>
-            <div>Are you looking for a specified place or a person?</div>
-            <ul class="g_list">
-                <li>Simply type what you’re looking for and the list will be sorted and give results according to your
-                    requirement.</li>
-                <li>Or just Select a room in the given list then the path will be shown to there from the entrance</li>
-                <li>Attention! your view will be switched to the bird view now!</li>
-                <li>To hide the selected path click on the room name in the navigation panel again</li>
-            </ul>
-            <div><strong>Every room has a unique ID. If you know them you can directly get the path to them by simply
-                    typing</div>
-            <div>&lt;URL>&lt;#RoomID></div><br>
-            <div>Want to get more information about a lecturer?</strong></div><br>
-            <div>Use the Search bar to find the lecturer’s room he/she owned. Get more details about
-                them by clicking on the link button which is at the very bottom of the info panel.</div>
-            <div>Note: You will be directed to their profile page of them.</div><br>
-        </div>
-        <div class="g_6">
-            <div><strong>Are you using a mobile device?</strong></div>
-            <div style="display: flex">
-                <ul class="g_list">
-                    <li>Click on the dashboard Button controller icon to enable the button
-                        controller for the mobile screen</li>
-                    <li>Note: We do not recommend using mobile devices for now as it is not optimized
-                        yet to get the full functionality of the system.</li>
-                </ul>
-                <img style="height: 5vmin; padding-top: 4vmin; padding-left: 2vmin;"
-                    src="images/button_controllers.png">
-                <img style="height: 15vmin; padding-left: 2vmin;" src="images/buttons.png">
-            </div>
-        </div>
-        <div class="g_7">
-            <div><strong>Contact Us</strong></div><br>
-            <div style="display: flex">
-                <div style="padding-top: 1vmin;">You can Contact developers by clicking this icon</div><br>
-                <img style="height: 5vmin; padding-left: 2vmin;" src="images/contact_us.png">
-            </div>
-        </div>
-        <div class="g_8">
-            <div><strong>Need to explore the department in a more realistic manner?</strong></div>
-            <div style="display: flex">
-                <ul class="g_list">
-                    <li>Enable assets by clicking on</li>
-                </ul>
-                <img style="height: 5vmin; padding-top: 1vmin; padding-left: 2vmin;" src="images/assets.png">
-            </div>
-        </div>
-        <div class="g_9">
-            <div>Buttons G, 1,2,3,4 indicates the floors of the dept building . You can Easily Switch
-                between those floors by using those buttons</div>
-            <img style="height: 5vmin; padding-left: 20%;" src="images/other_floors.png">
-        </div>
-    </div>
-</div>
