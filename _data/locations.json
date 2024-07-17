@@ -37,8 +37,8 @@
                 "label": "CE-G-01",
                 "title": "Department Office",
                 "contact": {
-                    "tele": "081-2393471",
-                    "email": "anuradhasb@eng.pdn.ac.lk",
+                    "tele": "",
+                    "email": "",
                     "name": "",
                     "link": ""
                 },
@@ -1839,7 +1839,7 @@
                     "tele": "",
                     "email": "damayanthiherath@eng.pdn.ac.lk",
                     "name": "Dr. Damayanthi Herath",
-                    "link": "https://people.ce.pdn.ac.lk//staff/academic/damayanthi-herath/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/damayanthi-herath/"
                 },
                 "capacity": "4",
                 "url": "#",
@@ -2013,9 +2013,9 @@
                 "title": "Server Room",
                 "contact": {
                     "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
+                    "email": "asithab@eng.pdn.ac.lk",
+                    "name": "Dr. Asitha Bandaranayake",
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/asitha-bandaranayake/"
                 },
                 "capacity": "N/A",
                 "url": "#",
