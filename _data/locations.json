@@ -37,11 +37,12 @@
                 "label": "CE-G-01",
                 "title": "Department Office",
                 "contact": {
-                    "tele": "081-2393471",
-                    "email": "anuradhasb@eng.pdn.ac.lk",
+                    "tele": "",
+                    "email": "",
                     "name": "",
                     "link": ""
                 },
+                "capacity": "2",
                 "capacity": "2",
                 "url": "http://www.ce.pdn.ac.lk/",
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/01/index.json",
@@ -162,6 +163,7 @@
                     "link": ""
                 },
                 "capacity": "1",
+                "capacity": "1",
                 "url": "#",
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/05/index.json",
                 "description": [
@@ -186,6 +188,7 @@
                     "name": "",
                     "link": ""
                 },
+                "capacity": "12",
                 "capacity": "12",
                 "url": "#",
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/G/06/index.json",
@@ -570,6 +573,7 @@
                     "link": ""
                 },
                 "capacity": "1",
+                "capacity": "1",
                 "url": "#",
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/01/01/index.json",
                 "description": [
@@ -949,12 +953,14 @@
                 "id": "01",
                 "label": "CE-02-01",
                 "title": "Technical Offcer's Room",
+                "title": "Technical Offcer's Room",
                 "contact": {
                     "tele": "081-2393910",
                     "email": "kalumg@eng.pdn.ac.lk",
                     "name": "",
                     "link": ""
                 },
+                "capacity": "1",
                 "capacity": "1",
                 "url": "#",
                 "api_url": "https://api.ce.pdn.ac.lk/locations/v1/02/01/index.json",
@@ -1331,6 +1337,7 @@
                     "email": "isurunawinne@eng.pdn.ac.lk",
                     "name": "Dr. Isuru Nawinne",
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/isuru-nawinne/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/isuru-nawinne/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -1377,6 +1384,7 @@
                     "email": "sithuminie@eng.pdn.ac.lk",
                     "name": "Dr. Sithumini Ekanayake",
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/sithumini-ekanayake/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/sithumini-ekanayake/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -1399,6 +1407,7 @@
                     "tele": "",
                     "email": "mahanamaw@eng.pdn.ac.lk",
                     "name": "Dr. Mahanama Wickramasinghe",
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/mahanama-wickramasinghe/"
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/mahanama-wickramasinghe/"
                 },
                 "capacity": "N/A",
@@ -1446,6 +1455,7 @@
                     "email": "nadeeshaa@eng.pdn.ac.lk",
                     "name": "Mrs. Nadeesha Adikari",
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/nadeesha-adikari/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/nadeesha-adikari/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -1490,6 +1500,7 @@
                 "floor": "03",
                 "id": "07",
                 "label": "CE-03-07",
+                "title": "Technical Offcer's Room",
                 "title": "Technical Offcer's Room",
                 "contact": {
                     "tele": "081-2393911",
@@ -1870,6 +1881,7 @@
                     "email": "damayanthiherath@eng.pdn.ac.lk",
                     "name": "Dr. Damayanthi Herath",
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/damayanthi-herath/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/damayanthi-herath/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -1970,6 +1982,7 @@
                     "email": "upuljm@eng.pdn.ac.lk",
                     "name": "Dr. Upul Jayasinghe",
                     "link": "https://people.ce.pdn.ac.lk/staff/academic/upul/"
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/upul/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -2011,11 +2024,12 @@
                 "id": "12",
                 "label": "CE-04-12",
                 "title": "Server Room",
+                "title": "Server Room",
                 "contact": {
                     "tele": "",
-                    "email": "",
-                    "name": "",
-                    "link": ""
+                    "email": "asithab@eng.pdn.ac.lk",
+                    "name": "Dr. Asitha Bandaranayake",
+                    "link": "https://people.ce.pdn.ac.lk/staff/academic/asitha-bandaranayake/"
                 },
                 "capacity": "N/A",
                 "url": "#",
@@ -2194,6 +2208,7 @@
                 "floor": "04",
                 "id": "OP",
                 "label": "CE-04-OP",
+                "title": "Operator Room",
                 "title": "Operator Room",
                 "contact": {
                     "tele": "",
